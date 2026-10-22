@@ -2,20 +2,6 @@
   <img src="./assets/profile-header.svg" alt="Hi, I'm Jinwoo! — Backend Developer. 민트색 노트북으로 작업하는 라벤더 캐릭터." width="100%" />
 </p>
 
-<h2 align="center">기술 선택의 이유를 설명하는 백엔드 개발자, 박진우입니다.</h2>
-
-<p align="center">
-  Java와 Spring으로 서비스를 만들며, 동시 요청과 실패 상황에서의 동작을 고민합니다.<br />
-  데이터 수집과 AI 추천에서 시작해, 거래 정합성과 실시간 이벤트 처리로 경험을 넓혀가고 있습니다.
-</p>
-
-<p align="center">
-  <a href="#projects">Projects</a> &nbsp;·&nbsp;
-  <a href="#tech-stack">Tech Stack</a>
-</p>
-
-<br />
-
 ## Projects
 
 ### 01 &nbsp; GRAB · 한정 수량 DROP 커머스
