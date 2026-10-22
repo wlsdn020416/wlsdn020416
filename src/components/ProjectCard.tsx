@@ -1,31 +1,6 @@
 import { ArrowUpRight } from 'lucide-react';
 import type { Project } from '../data/projects';
-
-function CardIllustration({ id }: { id: string }) {
-  if (id === 'grab') {
-    return (
-      <div className="ticket">
-        <b>GRAB IT!</b>
-        <div className="ticket-dots" />
-      </div>
-    );
-  }
-  if (id === 'knotty') {
-    return (
-      <div className="knot">
-        <i />
-        <i />
-        <span>✦</span>
-      </div>
-    );
-  }
-  return (
-    <div className="suitcase">
-      <i />
-      <span>✳</span>
-    </div>
-  );
-}
+import { PeriodLabel } from './PeriodLabel';
 
 type ProjectCardProps = {
   project: Project;
@@ -43,23 +18,20 @@ export function ProjectCard({ project: p, go }: ProjectCardProps) {
       }}
       className={`project-card ${p.id}`}
     >
-      <div className="card-copy">
-        <h2>
-          {p.name}
-          <span>{p.symbol}</span>
-        </h2>
-        <p>{p.tagline}</p>
-        <div className="card-tags">
-          {p.tags.slice(0, 3).map((t) => (
-            <span key={t}>{t}</span>
-          ))}
-        </div>
-      </div>
-      <div className={`card-illustration ${p.id}`} aria-hidden="true">
-        <CardIllustration id={p.id} />
-      </div>
-      <span className="card-arrow">
-        <ArrowUpRight size={23} />
+      <img
+        className="card-logo"
+        src={p.logo.src}
+        alt={p.name}
+        width={p.logo.width}
+        height={p.logo.height}
+      />
+      <p className="card-summary">{p.description}</p>
+      <p className="card-meta">
+        <PeriodLabel period={p.period} />
+        <span>{p.role}</span>
+      </p>
+      <span className="card-arrow" aria-hidden="true">
+        <ArrowUpRight size={20} />
       </span>
     </a>
   );

@@ -39,9 +39,11 @@ const experiences: Experience[] = [
     period: { start: '2026-08-21', end: '2026-09-03' },
     repo: 'https://github.com/wlsdn020416/Knotty',
     points: [
-      '쿠키 기반 인증 및 사용자 포트폴리오 관리 기능 구현',
       'Spring AI를 활용한 사용자·재능 기반 AI 매칭 기능 구현',
       'pgvector를 활용한 벡터 유사도 검색과 매칭 비즈니스 로직 연동',
+      '거래·지갑·요청글 비관적 락과 DB 중복 방지 제약으로 결제 동시성 제어',
+      '임베딩 처리를 AFTER_COMMIT 비동기 이벤트로 분리해 트랜잭션 락 점유 시간 단축',
+      '쿠키 기반 인증 및 사용자 포트폴리오 관리 기능 구현',
     ],
   },
   {

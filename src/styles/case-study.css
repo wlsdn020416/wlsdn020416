@@ -1,0 +1,444 @@
+.case-study {
+  --ink: #292a28;
+  --muted: #6c7166;
+  --line: #292a281f;
+  --surface: #f1f0ea;
+  color: var(--ink);
+}
+.case-study code,
+.case-study pre {
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-variant-ligatures: none;
+}
+.case-study :not(pre) > code {
+  font-size: 0.9em;
+}
+
+/* 섹션 */
+.cs-part {
+  border-top: 1px solid var(--line);
+  padding-top: 40px;
+  margin-top: 60px;
+}
+.cs-part:first-child {
+  margin-top: 20px;
+}
+.cs-part > h2 {
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: -1px;
+  margin: 0 0 14px;
+}
+.cs-lead {
+  max-width: 760px;
+  font-size: 15px;
+  line-height: 1.85;
+  color: var(--muted);
+  margin: 0;
+  word-break: keep-all;
+}
+.cs-block {
+  margin-top: 40px;
+}
+.cs-block > h3 {
+  font-size: 17px;
+  font-weight: 600;
+  margin: 0 0 14px;
+}
+
+/* 표 */
+.cs-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13.5px;
+}
+.cs-table th {
+  text-align: left;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+  padding: 0 12px 10px 0;
+  border-bottom: 1px solid var(--ink);
+}
+.cs-table td {
+  padding: 12px 12px 12px 0;
+  border-bottom: 1px solid var(--line);
+  color: var(--muted);
+  vertical-align: top;
+  word-break: keep-all;
+}
+.cs-table td:first-child {
+  color: var(--ink);
+  font-weight: 500;
+  white-space: nowrap;
+}
+.cs-table tr.is-chosen td {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+/* 코드 */
+.cs-codes {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 28px;
+}
+.code-block {
+  margin: 0;
+  min-width: 0;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+  background: #fcfcf9;
+}
+.code-file {
+  font:
+    500 12px 'JetBrains Mono',
+    ui-monospace,
+    Menlo,
+    monospace;
+  color: var(--muted);
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--line);
+  background: var(--surface);
+}
+.code-block pre {
+  margin: 0;
+  padding: 14px 0;
+  overflow-x: auto;
+  font-size: 12.5px;
+  line-height: 1.7;
+  color: #33352f;
+  tab-size: 4;
+}
+.code-block pre code {
+  display: block;
+  min-width: max-content;
+}
+.code-line {
+  display: block;
+  padding: 0 16px;
+}
+.code-line.is-highlighted {
+  background: #f3efd8;
+}
+.lang-text pre {
+  white-space: pre-wrap;
+}
+.lang-text pre code {
+  min-width: 0;
+}
+.tok-comment {
+  color: #8f9488;
+}
+.tok-string {
+  color: #4f7a2c;
+}
+.tok-annotation,
+.tok-number {
+  color: #a35a24;
+}
+.tok-keyword {
+  color: #6b4a9b;
+}
+.tok-type {
+  color: #2f6f7a;
+}
+.code-caption {
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--muted);
+  margin: 0;
+  padding: 12px 16px;
+  border-top: 1px solid var(--line);
+  word-break: keep-all;
+}
+
+/* 스크린샷 */
+.cs-shot {
+  margin: 40px 0 0;
+}
+.cs-shot img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+.cs-shot figcaption {
+  font-size: 12.5px;
+  color: var(--muted);
+  margin-top: 10px;
+}
+
+/* 인증 시퀀스 */
+.seq {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.seq-tabs {
+  display: flex;
+  border-bottom: 1px solid var(--line);
+  background: var(--surface);
+  overflow-x: auto;
+}
+.seq-tabs button {
+  font-size: 13px;
+  padding: 11px 16px;
+  color: var(--muted);
+  border-bottom: 2px solid transparent;
+  white-space: nowrap;
+}
+.seq-tabs button.is-active {
+  color: var(--ink);
+  font-weight: 600;
+  border-bottom-color: var(--ink);
+}
+.seq-board {
+  background: #fcfcf9;
+  padding: 18px 0 22px;
+}
+.seq-lanes,
+.seq-steps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.seq-lanes span {
+  justify-self: center;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 5px 12px;
+  border: 1px solid var(--ink);
+  border-radius: 6px;
+  background: #fff;
+}
+.seq-steps {
+  list-style: none;
+  margin: 0;
+  padding: 18px 0 0;
+  row-gap: 12px;
+  background:
+    linear-gradient(var(--line), var(--line)) 16.6667% 0 / 1px 100% no-repeat,
+    linear-gradient(var(--line), var(--line)) 50% 0 / 1px 100% no-repeat,
+    linear-gradient(var(--line), var(--line)) 83.3333% 0 / 1px 100% no-repeat;
+}
+.seq-step {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 2px;
+  margin-inline: calc(50% / var(--span));
+  padding: 0 6px 10px;
+}
+.seq-step.is-self {
+  margin-inline: 10px;
+  padding: 8px 10px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+}
+.seq-label {
+  font:
+    500 12.5px 'JetBrains Mono',
+    ui-monospace,
+    Menlo,
+    monospace;
+  word-break: break-word;
+}
+.seq-detail {
+  font-size: 11.5px;
+  color: var(--muted);
+  word-break: keep-all;
+}
+.seq-arrow {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: var(--ink);
+}
+.seq-arrow::after {
+  content: '';
+  position: absolute;
+  top: -4px;
+  border: 4.5px solid transparent;
+}
+.is-right .seq-arrow::after {
+  right: 0;
+  border-left: 7px solid var(--ink);
+  border-right: 0;
+}
+.is-left .seq-arrow {
+  background: repeating-linear-gradient(90deg, var(--ink) 0 5px, transparent 5px 9px);
+}
+.is-left .seq-arrow::after {
+  left: 0;
+  border-right: 7px solid var(--ink);
+  border-left: 0;
+}
+
+/* 동시 결제 타임라인 */
+.lock-timeline {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+  background: #fcfcf9;
+}
+.lock-col {
+  padding: 18px 20px;
+}
+.lock-col + .lock-col {
+  border-left: 1px solid var(--line);
+}
+.lock-col h4 {
+  font:
+    600 12.5px 'JetBrains Mono',
+    ui-monospace,
+    Menlo,
+    monospace;
+  margin: 0 0 12px;
+}
+.lock-col ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.lock-col li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  padding: 7px 0;
+  border-bottom: 1px dashed var(--line);
+}
+.lock-col li.who-B {
+  padding-left: 24px;
+}
+.lock-who {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1px solid var(--ink);
+  font:
+    600 10.5px 'JetBrains Mono',
+    ui-monospace,
+    Menlo,
+    monospace;
+}
+.who-B .lock-who {
+  background: var(--ink);
+  color: #fff;
+}
+.lock-col li.is-fail {
+  color: #b23c2a;
+  font-weight: 600;
+}
+.lock-col li.is-wait {
+  color: var(--muted);
+}
+.lock-col li.is-ok {
+  font-weight: 600;
+}
+.lock-col p {
+  font-size: 12.5px;
+  line-height: 1.7;
+  color: var(--muted);
+  margin: 12px 0 0;
+  word-break: keep-all;
+}
+
+/* 매칭 단계 */
+.pipeline {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--ink);
+}
+.pipeline li {
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr);
+  gap: 8px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--line);
+}
+.pipeline-no {
+  font:
+    600 14px 'Space Grotesk',
+    sans-serif;
+  color: var(--muted);
+  padding-top: 1px;
+}
+.pipeline h4 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  margin: 0 0 4px;
+}
+.pipeline-tag {
+  font-size: 10.5px;
+  font-weight: 600;
+  padding: 1px 6px;
+  border: 1px solid var(--ink);
+  border-radius: 4px;
+}
+.pipeline code {
+  font-size: 12px;
+  color: var(--muted);
+}
+.pipeline p {
+  font-size: 13.5px;
+  line-height: 1.75;
+  color: var(--muted);
+  margin: 6px 0 0;
+  word-break: keep-all;
+}
+
+@media (max-width: 760px) {
+  .cs-part {
+    padding-top: 30px;
+    margin-top: 44px;
+  }
+  .cs-part > h2 {
+    font-size: 24px;
+  }
+  .cs-lead {
+    font-size: 14px;
+  }
+  .cs-table {
+    font-size: 12.5px;
+  }
+  .seq-label {
+    font-size: 11px;
+  }
+  .seq-detail {
+    font-size: 10.5px;
+  }
+  .seq-lanes span {
+    font-size: 10.5px;
+    padding: 4px 7px;
+  }
+  .seq-step.is-self {
+    margin-inline: 4px;
+    padding: 6px;
+  }
+  .pipeline li {
+    grid-template-columns: 28px minmax(0, 1fr);
+  }
+  .lock-timeline {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .lock-col + .lock-col {
+    border-left: 0;
+    border-top: 1px solid var(--line);
+  }
+}

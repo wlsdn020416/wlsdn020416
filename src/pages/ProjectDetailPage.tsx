@@ -1,6 +1,6 @@
-import { ArrowLeft, ArrowRight, Github, Layers, Sparkles } from 'lucide-react';
-import { FlowSimulation } from '../components/FlowSimulation';
+import { ArrowLeft, ArrowRight, Github } from 'lucide-react';
 import { PeriodLabel } from '../components/PeriodLabel';
+import { caseStudies } from '../case-studies';
 import { getNextProject, type Project } from '../data/projects';
 
 type ProjectDetailPageProps = {
@@ -10,6 +10,7 @@ type ProjectDetailPageProps = {
 
 export function ProjectDetailPage({ project: p, go }: ProjectDetailPageProps) {
   const next = getNextProject(p.id);
+  const CaseStudy = caseStudies[p.id];
 
   return (
     <main className={`detail ${p.id}`}>
@@ -25,74 +26,42 @@ export function ProjectDetailPage({ project: p, go }: ProjectDetailPageProps) {
       </a>
 
       <section className="detail-hero">
-        <div>
-          <h1>
-            {p.name}
-            <span>↗</span>
-          </h1>
-          <h2>{p.title}</h2>
-          <p>{p.description}</p>
-          <div className="tags">
-            {p.tags.map((t) => (
-              <span key={t}>{t}</span>
-            ))}
+        <img
+          className="detail-logo"
+          src={p.logo.src}
+          alt={p.name}
+          width={p.logo.width}
+          height={p.logo.height}
+        />
+        <p className="detail-summary">{p.description}</p>
+        <dl className="detail-facts">
+          <div>
+            <dt>기간</dt>
+            <dd>
+              <PeriodLabel period={p.period} />
+            </dd>
           </div>
-          {(p.period || p.repo) && (
-            <div className="detail-meta">
-              {p.period && <PeriodLabel className="detail-period" period={p.period} />}
-              {p.repo && (
-                <a className="github-link" href={p.repo} target="_blank" rel="noopener noreferrer">
-                  <Github size={15} />
-                  GitHub Repository
-                </a>
-              )}
-            </div>
-          )}
-        </div>
-        <div className="detail-stamp">
-          <b>{p.stamp}</b>
-          <Sparkles />
-        </div>
+          <div>
+            <dt>팀</dt>
+            <dd>{p.team}</dd>
+          </div>
+          <div>
+            <dt>담당</dt>
+            <dd>{p.role}</dd>
+          </div>
+          <div>
+            <dt>기술</dt>
+            <dd>{p.tags.join(' · ')}</dd>
+          </div>
+        </dl>
+        <a className="github-link" href={p.repo} target="_blank" rel="noopener noreferrer">
+          <Github size={15} />
+          GitHub
+        </a>
       </section>
 
       <section className="detail-content">
-        <div className="focus-grid">
-          <h2>
-            What happens
-            <br />
-            under the hood?
-          </h2>
-          <div>
-            {p.notes.map((n) => (
-              <div className="focus-item" key={n}>
-                <p>{n}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <FlowSimulation title={p.flowTitle} flow={p.flow} />
-
-        {p.hasService && (
-          <div className="placeholder">
-            <span className="placeholder-icon">
-              <Layers size={32} />
-            </span>
-            <h3>서비스 화면</h3>
-            <p>배포 이전이 끝나면, 실제 서비스 화면이 여기에 들어옵니다.</p>
-          </div>
-        )}
-
-        <div className="draft-note">
-          <b>콘텐츠 초안</b>
-          <p>
-            기획서를 바탕으로 구성했습니다. 개인 기여 범위와 구현 세부 사항은 코드 확인 후
-            확정합니다.{' '}
-            {p.hasService
-              ? '서비스 링크는 Oracle Cloud 이전과 동작 확인 후 연결합니다.'
-              : 'Packing은 서비스 링크 없는 기술 사례로 남깁니다.'}
-          </p>
-        </div>
+        {CaseStudy && <CaseStudy />}
 
         <a
           className="next-project"
