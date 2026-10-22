@@ -28,9 +28,9 @@ npm run preview -- --port 4173
 
 브라우저 뒤로 가기와 상세 주소 직접 접속을 지원합니다. 정적 호스팅 배포 시 모든 앱 경로를 index.html로 재작성하도록 설정해야 합니다.
 
-크림·라임·라벤더·살구 색상, CSS 캐릭터와 카드 일러스트를 사용합니다. 그림은 실제 서비스 스크린샷이 아닙니다. 모바일에서는 소개 뒤에 프로젝트 카드를 세로로 배치합니다. reduced-motion 설정에서는 인트로와 움직임을 생략합니다.
+크림·라임·라벤더·살구 색상, CSS 캐릭터와 카드 일러스트를 사용합니다. 그림은 실제 서비스 스크린샷이 아닙니다. 모바일에서는 이력서 뒤에 프로젝트 카드를 세로로 배치합니다. reduced-motion 설정에서는 인트로와 움직임을 생략합니다.
 
-실제 스크린샷과 서비스 링크는 Oracle Cloud 이전 후 추가합니다. 개인 기여 및 기술 상세는 저장소 대조 전인 기획서 기반 초안입니다. 연락처·GitHub·이력서는 공개 전 추가해야 합니다.
+실제 스크린샷과 서비스 링크는 Oracle Cloud 이전 후 추가합니다. 개인 기여 및 기술 상세는 저장소 대조 전인 기획서 기반 초안입니다. 연락처·이력서 파일은 공개 전 추가해야 합니다.
 
 ## 폴더 구조
 
@@ -38,9 +38,11 @@ npm run preview -- --port 4173
 src/
 ├── main.tsx            # 엔트리
 ├── App.tsx             # 라우팅·인트로·About 패널 상태
-├── components/         # Header, AboutPanel, Intro, Mascot, Resume, ProjectCard, FlowSimulation
+├── assets/images/      # 이미지 (증명사진 등)
+├── components/         # Header, AboutPanel, Intro, Mascot, Resume, ProjectCard, FlowSimulation, PeriodLabel
 ├── pages/              # HomePage, ProjectDetailPage, NotFoundPage
 ├── data/projects.ts    # 프로젝트 콘텐츠
+├── utils/              # 날짜 포맷 등 유틸
 └── styles/global.css   # 전역 스타일
 ```
 

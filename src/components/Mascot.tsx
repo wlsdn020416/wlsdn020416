@@ -1,6 +1,6 @@
-export function Mascot({ mini = false }: { mini?: boolean }) {
+export function Mascot() {
   return (
-    <div className={`mascot ${mini ? 'mini' : ''}`} aria-hidden="true">
+    <div className="mascot" aria-hidden="true">
       <div className="antenna" />
       <div className="head">
         <div className="eyes">

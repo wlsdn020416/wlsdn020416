@@ -1,3 +1,5 @@
+import type { Period } from '../utils/period';
+
 export type Project = {
   id: string;
   name: string;
@@ -19,6 +21,10 @@ export type Project = {
   flowTitle: string;
   /** 서비스 화면 자리 표시 여부 */
   hasService: boolean;
+  /** 진행 기간 */
+  period?: Period;
+  /** GitHub 저장소 */
+  repo?: string;
 };
 
 export const projects: Project[] = [
@@ -43,6 +49,8 @@ export const projects: Project[] = [
     stamp: 'precision.',
     flowTitle: 'From waiting to live.',
     hasService: true,
+    period: { start: '2026-09-22', end: '2026-11-04' },
+    repo: 'https://github.com/wlsdn020416/Grab',
   },
   {
     id: 'knotty',
@@ -65,6 +73,8 @@ export const projects: Project[] = [
     stamp: 'curiosity.',
     flowTitle: 'A little closer to the right match.',
     hasService: true,
+    period: { start: '2026-08-21', end: '2026-09-03' },
+    repo: 'https://github.com/wlsdn020416/Knotty',
   },
   {
     id: 'packing',
@@ -87,6 +97,8 @@ export const projects: Project[] = [
     stamp: 'possibility.',
     flowTitle: 'From raw data to a new destination.',
     hasService: false,
+    period: { start: '2026-06-08', end: '2026-06-12' },
+    repo: 'https://github.com/wlsdn020416/Packing',
   },
 ];
 

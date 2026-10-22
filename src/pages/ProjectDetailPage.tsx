@@ -1,5 +1,6 @@
-import { ArrowLeft, ArrowRight, Layers, Sparkles } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Github, Layers, Sparkles } from 'lucide-react';
 import { FlowSimulation } from '../components/FlowSimulation';
+import { PeriodLabel } from '../components/PeriodLabel';
 import { getNextProject, type Project } from '../data/projects';
 
 type ProjectDetailPageProps = {
@@ -36,6 +37,17 @@ export function ProjectDetailPage({ project: p, go }: ProjectDetailPageProps) {
               <span key={t}>{t}</span>
             ))}
           </div>
+          {(p.period || p.repo) && (
+            <div className="detail-meta">
+              {p.period && <PeriodLabel className="detail-period" period={p.period} />}
+              {p.repo && (
+                <a className="github-link" href={p.repo} target="_blank" rel="noopener noreferrer">
+                  <Github size={15} />
+                  GitHub Repository
+                </a>
+              )}
+            </div>
+          )}
         </div>
         <div className="detail-stamp">
           <b>{p.stamp}</b>

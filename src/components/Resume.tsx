@@ -1,55 +1,59 @@
-import { Mascot } from './Mascot';
+import { Github } from 'lucide-react';
+import profilePhoto from '../assets/images/profile.jpg';
+import type { Period } from '../utils/period';
+import { PeriodLabel } from './PeriodLabel';
 
 const skills = [
   { category: 'Backend', items: 'Java · Spring Boot · Spring Data JPA' },
   { category: 'Database', items: 'MySQL · PostgreSQL · Redis' },
   { category: 'AI & Data', items: 'Spring AI · pgvector · LLM Integration' },
   { category: 'Frontend', items: 'React · TypeScript · JavaScript' },
-  { category: 'Infrastructure', items: 'Docker · Nginx · GitHub Actions · AWS' },
+  { category: 'Infra & DevOps', items: 'AWS (EC2, RDS) · Docker · Nginx · GitHub Actions' },
 ];
 
-const experiences = [
+type Experience = {
+  name: string;
+  summary: string;
+  points: string[];
+  period?: Period;
+  repo?: string;
+};
+
+const experiences: Experience[] = [
   {
     name: 'GRAB',
     summary: '한정수량 판매 서비스',
+    period: { start: '2026-09-22', end: '2026-11-04' },
+    repo: 'https://github.com/wlsdn020416/Grab',
     points: [
-      'DROP 도메인의 공개·판매 상태와 WISH 등록 및 취소 흐름',
-      '배치 처리의 상태 전환, 트랜잭션과 잠금 전략',
-      'SSE 구독과 이벤트 전달, 연결 종료 시 자원 관리',
+      'DROP 도메인 설계 및 상품 공개·판매 상태 관리, WISH 등록·취소 기능 구현',
+      'Spring Scheduler와 SKIP LOCKED 기반 상태 전환 배치 구현 및 중복 처리 방지',
+      'SSE 기반 실시간 재고 이벤트 전달과 비동기 연결·자원 생명주기 관리',
+      'AI 활용 프론트엔드 개발을 위한 코드 생성·검증 자동화 환경 구축',
+      'OpenAPI 스키마 기반 타입 생성, ESLint·Prettier 정적 검증 및 Playwright E2E 테스트 체계 구성',
     ],
   },
   {
     name: 'Knotty',
     summary: 'AI 기반 재능 거래 및 매칭 플랫폼',
+    period: { start: '2026-08-21', end: '2026-09-03' },
+    repo: 'https://github.com/wlsdn020416/Knotty',
     points: [
-      '쿠키 기반 인증과 사용자 포트폴리오 관리',
-      'Spring AI를 활용한 AI 매칭 기능',
-      'pgvector 의미 검색과 서비스 로직의 연결',
+      '쿠키 기반 인증 및 사용자 포트폴리오 관리 기능 구현',
+      'Spring AI를 활용한 사용자·재능 기반 AI 매칭 기능 구현',
+      'pgvector를 활용한 벡터 유사도 검색과 매칭 비즈니스 로직 연동',
     ],
   },
   {
     name: 'Packing',
-    summary: '데이터 기반 개인화 여행 추천',
+    summary: '데이터 기반 개인화 여행 추천 서비스',
+    period: { start: '2026-06-08', end: '2026-06-12' },
+    repo: 'https://github.com/wlsdn020416/Packing',
     points: [
-      '외부 API 원천 데이터 수집 및 저장',
-      '규칙 기반 성향 점수 계산과 가공 데이터 저장',
-      '사용자 성향과 지역 조건을 반영하는 LLM 추천',
+      '외부 API 데이터 수집·저장 및 서비스 목적에 맞는 데이터 가공 파이프라인 구현',
+      '규칙 기반 성향 점수 산정 및 추천용 데이터 구조화',
+      '사용자 성향 점수와 지역 조건을 활용한 LLM 기반 맞춤형 여행 전략 추천',
     ],
-  },
-];
-
-const principles = [
-  {
-    title: '구조부터 이해하기',
-    body: '기능을 구현하기 전에 데이터가 어디서 오고, 어떤 조건에서 상태가 바뀌는지 살펴봅니다.',
-  },
-  {
-    title: '선택의 이유 남기기',
-    body: '대안의 장단점과 선택한 이유를 설명할 수 있는 설계를 지향합니다.',
-  },
-  {
-    title: '검증하며 개선하기',
-    body: '테스트와 측정으로 동작을 확인하고, 확인한 근거를 바탕으로 다음 개선을 결정합니다.',
   },
 ];
 
@@ -57,30 +61,30 @@ export function Resume() {
   return (
     <section className="resume" aria-label="이력서">
       <div className="resume-intro">
-        <div>
+        <figure className="profile-photo">
+          <img src={profilePhoto} alt="박진우 프로필 사진" width={600} height={777} />
+          <span className="profile-sticker" aria-hidden="true">
+            ✳
+          </span>
+        </figure>
+        <div className="resume-heading">
           <h1>
-            진우<span>Backend Developer</span>
+            박진우<span>Backend Developer</span>
           </h1>
-          <p className="resume-lead">
-            호기심으로 시작해서,
-            <br />
-            <strong>믿고 쓸 수 있는 시스템</strong>으로.
+          <p className="resume-birth">
+            <time dateTime="2002-04-16">2002. 04. 16.</time>
           </p>
+          <a
+            className="github-link"
+            href="https://github.com/wlsdn020416"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Github size={15} />
+            github.com/wlsdn020416
+          </a>
         </div>
-        <Mascot mini />
       </div>
-
-      <section className="resume-section">
-        <h2>소개</h2>
-        <p>
-          문제의 원인과 시스템의 구조를 먼저 이해합니다. 기술 선택의 대안을 비교하고, 트레이드오프를
-          고민하며, 테스트와 검증을 통해 설계의 근거를 쌓아갑니다.
-        </p>
-        <p>
-          데이터 수집과 추천에서 시작해, AI 매칭과 벡터 검색, 동시성과 상태 전환을 다루는 백엔드
-          시스템으로 관심을 넓혀왔습니다.
-        </p>
-      </section>
 
       <section className="resume-section">
         <h2>기술</h2>
@@ -94,28 +98,34 @@ export function Resume() {
         </dl>
       </section>
 
-      <section className="resume-section">
+      <section className="resume-section resume-last">
         <h2>프로젝트 경험</h2>
         {experiences.map((exp) => (
           <article className="resume-experience" key={exp.name}>
-            <h3>{exp.name}</h3>
-            <p className="experience-summary">{exp.summary}</p>
+            <div className="experience-head">
+              <h3>{exp.name}</h3>
+              {exp.period && <PeriodLabel className="experience-period" period={exp.period} />}
+            </div>
+            <p className="experience-summary">
+              {exp.summary}
+              {exp.repo && (
+                <a
+                  className="experience-repo"
+                  href={exp.repo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Github size={13} />
+                  GitHub
+                </a>
+              )}
+            </p>
             <ul>
               {exp.points.map((point) => (
                 <li key={point}>{point}</li>
               ))}
             </ul>
           </article>
-        ))}
-      </section>
-
-      <section className="resume-section resume-last">
-        <h2>일하는 방식</h2>
-        {principles.map((p) => (
-          <div className="work-principle" key={p.title}>
-            <h3>{p.title}</h3>
-            <p>{p.body}</p>
-          </div>
         ))}
       </section>
     </section>
