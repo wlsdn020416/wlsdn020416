@@ -1,16 +1,11 @@
-type Stage = {
-  title: string;
-  where: string;
-  body: string;
-  llm?: boolean;
-};
+import { StepList, type Step } from '../shared/StepList';
 
-const stages: Stage[] = [
+const steps: Step[] = [
   {
     title: '검색어 분석',
     where: 'AiMatchQueryAnalysisService',
     body: '검색 대상, 의미 검색용 문장, 카테고리, 금액·기간 조건을 JSON으로 추출합니다.',
-    llm: true,
+    tag: 'LLM',
   },
   {
     title: '조건 검증',
@@ -36,26 +31,10 @@ const stages: Stage[] = [
     title: '추천 이유 생성',
     where: 'RecommendationReasonService',
     body: '선정된 후보별 추천 이유를 한 번의 호출로 생성합니다.',
-    llm: true,
+    tag: 'LLM',
   },
 ];
 
 export function MatchingPipeline() {
-  return (
-    <ol className="pipeline">
-      {stages.map((stage, i) => (
-        <li key={stage.title}>
-          <span className="pipeline-no">{i + 1}</span>
-          <div>
-            <h4>
-              {stage.title}
-              {stage.llm && <span className="pipeline-tag">LLM</span>}
-            </h4>
-            <code>{stage.where}</code>
-            <p>{stage.body}</p>
-          </div>
-        </li>
-      ))}
-    </ol>
-  );
+  return <StepList steps={steps} />;
 }

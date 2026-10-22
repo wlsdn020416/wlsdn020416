@@ -7,7 +7,7 @@ import { HomePage } from './pages/HomePage';
 import { NotFoundPage } from './pages/NotFoundPage';
 import { ProjectDetailPage } from './pages/ProjectDetailPage';
 
-const DEFAULT_TITLE = 'JINWOO — A little curious. A lot of code.';
+const DEFAULT_TITLE = '박진우 포트폴리오';
 const INTRO_KEY = 'jw-intro';
 const INTRO_DURATION = 1450;
 
@@ -47,7 +47,7 @@ export function App() {
   const home = path === '/';
 
   useEffect(() => {
-    document.title = project ? `${project.name} — JINWOO` : DEFAULT_TITLE;
+    document.title = project ? `${project.name} — ${DEFAULT_TITLE}` : DEFAULT_TITLE;
   }, [project]);
 
   return (

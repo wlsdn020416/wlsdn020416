@@ -48,7 +48,7 @@ export const projects: Project[] = [
     repo: 'https://github.com/wlsdn020416/Packing',
     logo: { src: packingLogo, width: 640, height: 308 },
     team: '4인 팀',
-    role: '데이터 수집 · 추천',
+    role: '데이터 수집 · 가공 · LLM 추천',
   },
 ];
 

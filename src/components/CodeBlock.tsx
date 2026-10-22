@@ -89,8 +89,8 @@ type CodeBlockProps = {
   /** 강조할 줄 번호 (1부터) */
   highlightLines?: number[];
   caption?: ReactNode;
-  /** text면 문법 강조 없이 출력 (프롬프트 등) */
-  lang?: 'java' | 'text';
+  /** text면 문법 강조 없이 출력 (프롬프트, SQL 등) */
+  lang?: 'java' | 'js' | 'text';
 };
 
 export function CodeBlock({
@@ -111,7 +111,7 @@ export function CodeBlock({
               key={i}
               className={`code-line ${highlightLines.includes(i + 1) ? 'is-highlighted' : ''}`}
             >
-              {lang === 'java' ? highlight(line) : line}
+              {lang === 'text' ? line : highlight(line)}
               {'\n'}
             </span>
           ))}
