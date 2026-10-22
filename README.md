@@ -8,7 +8,11 @@
 
 **정해진 시간에 판매를 시작하고, 재고 변화를 실시간으로 전달하는 서비스**
 
-`Java` `Spring Boot` `PostgreSQL` `Redis` `SSE`
+![Java](https://img.shields.io/badge/Java-E4DCF5?style=flat-square&logo=openjdk&logoColor=51465E)
+![Spring Boot](https://img.shields.io/badge/Spring_Boot-E4DCF5?style=flat-square&logo=springboot&logoColor=51465E)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-C7E7D9?style=flat-square&logo=postgresql&logoColor=51465E)
+![Redis](https://img.shields.io/badge/Redis-C7E7D9?style=flat-square&logo=redis&logoColor=51465E)
+![SSE](https://img.shields.io/badge/SSE-E4DCF5?style=flat-square)
 
 4인 팀 · **담당: DROP·WISH 도메인, 상태 전환 배치, SSE, 프론트엔드 개발·검증 환경**
 
@@ -24,7 +28,12 @@
 
 **자연어로 필요한 재능을 찾고, 채팅에서 거래까지 이어지는 서비스**
 
-`Java` `Spring Boot` `Spring AI` `pgvector` `PostgreSQL` `Redis`
+![Java](https://img.shields.io/badge/Java-E4DCF5?style=flat-square&logo=openjdk&logoColor=51465E)
+![Spring Boot](https://img.shields.io/badge/Spring_Boot-E4DCF5?style=flat-square&logo=springboot&logoColor=51465E)
+![Spring AI](https://img.shields.io/badge/Spring_AI-C7E7D9?style=flat-square&logo=spring&logoColor=51465E)
+![pgvector](https://img.shields.io/badge/pgvector-C7E7D9?style=flat-square)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-C7E7D9?style=flat-square&logo=postgresql&logoColor=51465E)
+![Redis](https://img.shields.io/badge/Redis-C7E7D9?style=flat-square&logo=redis&logoColor=51465E)
 
 3인 팀 · **담당: AI 매칭, 거래 동시성 제어, 인증·사용자 포트폴리오**
 
@@ -40,7 +49,11 @@
 
 **실제 관광지 데이터에 사용자 성향과 여행 조건을 더하는 서비스**
 
-`Node.js` `Express` `Supabase` `Gemini` `TourAPI`
+![Node.js](https://img.shields.io/badge/Node.js-E4DCF5?style=flat-square&logo=nodedotjs&logoColor=51465E)
+![Express](https://img.shields.io/badge/Express-E4DCF5?style=flat-square&logo=express&logoColor=51465E)
+![Supabase](https://img.shields.io/badge/Supabase-C7E7D9?style=flat-square&logo=supabase&logoColor=51465E)
+![Gemini](https://img.shields.io/badge/Gemini-C7E7D9?style=flat-square&logo=googlegemini&logoColor=51465E)
+![TourAPI](https://img.shields.io/badge/TourAPI-C7E7D9?style=flat-square)
 
 4인 팀 · **담당: 관광지 데이터 수집·가공, 성향 점수 산정, LLM 추천**
 
@@ -53,17 +66,37 @@
 
 ## Tech Stack
 
-<p>
-  <img src="https://img.shields.io/badge/Java-171B2A?style=flat-square&amp;logo=openjdk&amp;logoColor=white" alt="Java" />
-  <img src="https://img.shields.io/badge/Spring_Boot-171B2A?style=flat-square&amp;logo=springboot&amp;logoColor=6DB33F" alt="Spring Boot" />
-  <img src="https://img.shields.io/badge/PostgreSQL-171B2A?style=flat-square&amp;logo=postgresql&amp;logoColor=90B8F8" alt="PostgreSQL" />
-  <img src="https://img.shields.io/badge/Redis-171B2A?style=flat-square&amp;logo=redis&amp;logoColor=FF6B6B" alt="Redis" />
-  <img src="https://img.shields.io/badge/Docker-171B2A?style=flat-square&amp;logo=docker&amp;logoColor=61DAFB" alt="Docker" />
-</p>
+### Backend
 
-| 영역 | 프로젝트에서 사용한 기술 |
-| :--- | :--- |
-| Backend | Java · Spring Boot · Spring Data JPA · Spring Security · Node.js · Express |
-| Data & AI | PostgreSQL · Redis · Spring AI · pgvector · Gemini · Supabase |
-| Frontend | React · TypeScript · JavaScript · Vite · TanStack Query |
-| Testing & Workflow | JUnit · Testcontainers · Playwright · GitHub Actions · Docker · OpenAPI |
+![Java](https://img.shields.io/badge/Java-E4DCF5?style=for-the-badge&logo=openjdk&logoColor=51465E)
+![Spring Boot](https://img.shields.io/badge/Spring_Boot-E4DCF5?style=for-the-badge&logo=springboot&logoColor=51465E)
+![Spring Data JPA](https://img.shields.io/badge/Spring_Data_JPA-E4DCF5?style=for-the-badge&logo=spring&logoColor=51465E)
+![Spring Security](https://img.shields.io/badge/Spring_Security-E4DCF5?style=for-the-badge&logo=springsecurity&logoColor=51465E)
+![Node.js](https://img.shields.io/badge/Node.js-E4DCF5?style=for-the-badge&logo=nodedotjs&logoColor=51465E)
+![Express](https://img.shields.io/badge/Express-E4DCF5?style=for-the-badge&logo=express&logoColor=51465E)
+
+### Data & AI
+
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-C7E7D9?style=for-the-badge&logo=postgresql&logoColor=51465E)
+![Redis](https://img.shields.io/badge/Redis-C7E7D9?style=for-the-badge&logo=redis&logoColor=51465E)
+![Spring AI](https://img.shields.io/badge/Spring_AI-C7E7D9?style=for-the-badge&logo=spring&logoColor=51465E)
+![pgvector](https://img.shields.io/badge/pgvector-C7E7D9?style=for-the-badge)
+![Gemini](https://img.shields.io/badge/Gemini-C7E7D9?style=for-the-badge&logo=googlegemini&logoColor=51465E)
+![Supabase](https://img.shields.io/badge/Supabase-C7E7D9?style=for-the-badge&logo=supabase&logoColor=51465E)
+
+### Frontend
+
+![React](https://img.shields.io/badge/React-F9E0CD?style=for-the-badge&logo=react&logoColor=51465E)
+![TypeScript](https://img.shields.io/badge/TypeScript-F9E0CD?style=for-the-badge&logo=typescript&logoColor=51465E)
+![JavaScript](https://img.shields.io/badge/JavaScript-F9E0CD?style=for-the-badge&logo=javascript&logoColor=51465E)
+![Vite](https://img.shields.io/badge/Vite-F9E0CD?style=for-the-badge&logo=vite&logoColor=51465E)
+![TanStack Query](https://img.shields.io/badge/TanStack_Query-F9E0CD?style=for-the-badge&logo=reactquery&logoColor=51465E)
+
+### Testing & Workflow
+
+![JUnit](https://img.shields.io/badge/JUnit-E1EDB2?style=for-the-badge)
+![Testcontainers](https://img.shields.io/badge/Testcontainers-E1EDB2?style=for-the-badge)
+![Playwright](https://img.shields.io/badge/Playwright-E1EDB2?style=for-the-badge)
+![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-E1EDB2?style=for-the-badge&logo=githubactions&logoColor=51465E)
+![Docker](https://img.shields.io/badge/Docker-E1EDB2?style=for-the-badge&logo=docker&logoColor=51465E)
+![OpenAPI](https://img.shields.io/badge/OpenAPI-E1EDB2?style=for-the-badge&logo=openapiinitiative&logoColor=51465E)
