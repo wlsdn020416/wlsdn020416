@@ -1,0 +1,176 @@
+import { Minus, Plus, Printer } from 'lucide-react';
+import { useEffect, useState, type CSSProperties } from 'react';
+
+const FONT_STEPS = [0.9, 1, 1.1, 1.2, 1.3];
+const FONT_KEY = 'jw-about-font';
+
+function readFontStep() {
+  try {
+    const raw = localStorage.getItem(FONT_KEY);
+    if (raw === null) return 1;
+    const saved = Number(raw);
+    return Number.isInteger(saved) && saved >= 0 && saved < FONT_STEPS.length ? saved : 1;
+  } catch {
+    return 1;
+  }
+}
+
+export function AboutPanel() {
+  const [step, setStep] = useState(readFontStep);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem(FONT_KEY, String(step));
+    } catch {
+      /* 저장이 막힌 브라우저에서는 현재 세션 동안만 적용한다. */
+    }
+  }, [step]);
+
+  return (
+    <aside
+      className="about-panel"
+      aria-label="About me"
+      style={{ '--about-scale': FONT_STEPS[step] } as CSSProperties}
+    >
+      <div className="about-tools">
+        <span className="about-tools-label">글자 크기</span>
+        <div className="font-stepper" role="group" aria-label="글자 크기 조절">
+          <button
+            type="button"
+            onClick={() => setStep((s) => Math.max(0, s - 1))}
+            disabled={step === 0}
+            aria-label="글자 작게"
+          >
+            <Minus size={14} />
+          </button>
+          <span aria-live="polite">{Math.round(FONT_STEPS[step] * 100)}%</span>
+          <button
+            type="button"
+            onClick={() => setStep((s) => Math.min(FONT_STEPS.length - 1, s + 1))}
+            disabled={step === FONT_STEPS.length - 1}
+            aria-label="글자 크게"
+          >
+            <Plus size={14} />
+          </button>
+        </div>
+        <button type="button" className="about-print" onClick={() => window.print()}>
+          <Printer size={14} />
+          PDF 저장
+        </button>
+      </div>
+
+      <div className="about-print-head">
+        <h1>
+          박진우 <span>Backend Developer</span>
+        </h1>
+        <p>
+          <a href="https://github.com/wlsdn020416">github.com/wlsdn020416</a>
+        </p>
+      </div>
+
+      <AboutSections />
+    </aside>
+  );
+}
+
+/** 자기소개 본문. 패널과 전체 PDF 문서가 함께 사용한다. */
+export function AboutSections() {
+  return (
+    <>
+      <section>
+        <h2>문제를 이해하고, 해결책을 만들어가는 개발자입니다.</h2>
+        <p>
+          저는 새로운 문제를 마주했을 때, 그 구조를 이해하고 해결 방법을 찾아가는 과정에서 가장 큰
+          성취감을 느낍니다.
+        </p>
+        <p>
+          배관 기술 업무와 카페 매니저를 거쳐 개발을 선택했습니다. 서로 다른 환경에서 일하며 문제를
+          파악하고, 상황에 맞는 해결책을 찾는 경험을 쌓았습니다.
+        </p>
+        <p>
+          개발은 이러한 경험을 기술로 확장할 수 있는 분야였습니다. 직접 설계한 구조가 코드로
+          구현되고, 의도한 대로 동작하는 과정은 개발에 몰입하게 된 가장 큰 이유입니다.
+        </p>
+      </section>
+
+      <section>
+        <h2>가장 큰 성장은 직접 문제를 해결하는 과정에서 이루어졌습니다.</h2>
+        <p>
+          저는 새로운 기술을 배우는 것보다, 그 기술이 필요한 이유를 이해하고 실제 문제에 적용하는
+          과정에서 더 많이 성장했습니다.
+        </p>
+        <p>
+          첫 프로젝트인 <strong>Packing</strong>에서는 외부 API 데이터를 수집하고 가공해 사용자
+          성향에 맞는 추천 시스템을 구현했습니다. 데이터를 단순히 저장하는 것이 아니라, 서비스의
+          목적에 맞게 변환하고 활용하는 경험이었습니다.
+        </p>
+        <p>
+          <strong>Knotty</strong>에서는 인증과 사용자 데이터 관리, Spring AI와 pgvector 기반의 AI
+          매칭 기능을 구현했습니다. 서로 다른 기술을 연결해 하나의 서비스 기능으로 완성하는 경험을
+          쌓았습니다.
+        </p>
+        <p>
+          팀장으로 참여한 <strong>GRAB</strong>에서는 한정수량 커머스의 복잡한 상태 관리와 실시간
+          재고 전달 문제를 다뤘습니다.
+        </p>
+        <p>
+          특히 SSE 기반 재고 스트리밍을 구현하며 연결 수 제한, 이벤트 병합, 전송 큐와 타임아웃을
+          고려한 구조를 설계했습니다. 기능 구현을 넘어, 동시 요청과 서버 자원 관리까지 고민한
+          경험이었습니다.
+        </p>
+        <p>
+          프로젝트가 복잡해질수록 중요한 것은 기술의 개수가 아니라,{' '}
+          <mark>문제를 얼마나 정확하게 이해하고 적절한 해결책을 선택하는가</mark>라는 사실을
+          확인했습니다.
+        </p>
+      </section>
+
+      <section>
+        <h2>모르는 문제를 해결할 수 있는 환경을 만듭니다.</h2>
+        <p>
+          저는 모든 기술을 직접 다룰 수 있는 것보다, 필요한 기술을 빠르게 이해하고 결과를 검증할 수
+          있는 환경을 만드는 것이 중요하다고 생각합니다.
+        </p>
+        <p>
+          GRAB의 프론트엔드 개발에서는 AI를 활용해 구현 생산성을 높이면서도, 결과물의 신뢰성을
+          확보할 수 있는 체계를 구축했습니다.
+        </p>
+        <p>
+          OpenAPI 스키마 기반 타입 생성으로 API 계약을 관리하고, ESLint와 Prettier로 코드 규칙을
+          통일했습니다. Playwright E2E 테스트를 도입해 사용자 관점에서 주요 기능이 정상 동작하는지
+          검증했습니다.
+        </p>
+        <p>
+          이 과정에서{' '}
+          <mark>빠르게 구현하는 능력과 올바르게 구현되었는지 판단하는 능력은 서로 다른 역량</mark>
+          이라는 점을 배웠습니다.
+        </p>
+        <p>
+          저는 AI를 단순히 코드를 생성하는 도구가 아니라, 개발 과정의 효율을 높이는 수단으로
+          활용합니다. 동시에 결과를 검증하고 기술적 선택에 책임지는 역할은 개발자의 몫이라고
+          생각합니다.
+        </p>
+      </section>
+
+      <section>
+        <h2>선택의 이유를 설명할 수 있는 개발자입니다.</h2>
+        <p>
+          저는 새로운 개념을 이해하고, 이전에는 해결하지 못했던 문제를 스스로 다룰 수 있게 되는
+          순간에 큰 만족감을 느낍니다.
+        </p>
+        <p>
+          하지만 이해하는 것만으로 끝내지 않습니다. 실제로 구현하고, 예상하지 못한 상황을 확인하고,
+          필요하다면 구조를 개선하는 과정을 중요하게 생각합니다.
+        </p>
+        <p>
+          문제를 마주하면 원인을 파악하고, 가능한 대안을 비교하며, 선택한 방법이 적절했는지
+          검증합니다.
+        </p>
+        <p>
+          <mark>기능이 동작한다는 사실을 넘어, 왜 그렇게 동작하는지 설명할 수 있는 개발자.</mark>
+        </p>
+        <p>이것이 제가 추구하는 개발 방식이며, 앞으로도 지켜갈 기준입니다.</p>
+      </section>
+    </>
+  );
+}
