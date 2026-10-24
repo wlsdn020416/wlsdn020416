@@ -199,6 +199,10 @@
   background: #fcfcf9;
   padding: 18px 0 22px;
 }
+.seq-board:not(.is-active),
+.seq-title {
+  display: none;
+}
 .seq-lanes,
 .seq-steps {
   display: grid;
@@ -705,7 +709,6 @@
   /* 도식·표·스크린샷은 한 덩어리로 유지하되 크기를 줄인다. */
   .cs-shot,
   .cs-table,
-  .seq,
   .lock-timeline,
   .mbti-example,
   .itinerary-flow,
@@ -731,6 +734,27 @@
   .mbti-example,
   .itinerary-flow {
     font-size: 0.9em;
+  }
+
+  /* 인증 시퀀스는 탭 대신 세 시나리오를 모두 펼친다. */
+  .seq-tabs {
+    display: none;
+  }
+  .seq-board:not(.is-active) {
+    display: block;
+  }
+  .seq-board + .seq-board {
+    border-top: 1px solid var(--line);
+  }
+  .seq-board {
+    padding: 12px 0 14px;
+    break-inside: avoid;
+  }
+  .seq-title {
+    display: block;
+    margin: 0 0 10px 14px;
+    font-size: 11.5px;
+    font-weight: 600;
   }
 
   /* 코드는 줄바꿈해서 오른쪽이 잘리지 않게 하고, 긴 코드만 줄 단위로 넘긴다. */

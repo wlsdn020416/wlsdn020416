@@ -71,7 +71,6 @@ function SequenceStep({ step }: { step: Step }) {
 
 export function AuthSequence() {
   const [active, setActive] = useState(scenarios[0].id);
-  const scenario = scenarios.find((s) => s.id === active) ?? scenarios[0];
 
   return (
     <div className="seq">
@@ -88,18 +87,26 @@ export function AuthSequence() {
           </button>
         ))}
       </div>
-      <div className="seq-board">
-        <div className="seq-lanes" aria-hidden="true">
-          {LANES.map((lane) => (
-            <span key={lane}>{lane}</span>
-          ))}
+      {/* 인쇄에서는 탭을 누를 수 없으므로 모든 시나리오를 렌더링하고, 화면에서만 선택된 것 외에는 숨긴다. */}
+      {scenarios.map((scenario) => (
+        <div
+          key={scenario.id}
+          role="tabpanel"
+          className={`seq-board${scenario.id === active ? ' is-active' : ''}`}
+        >
+          <p className="seq-title">{scenario.title}</p>
+          <div className="seq-lanes" aria-hidden="true">
+            {LANES.map((lane) => (
+              <span key={lane}>{lane}</span>
+            ))}
+          </div>
+          <ol className="seq-steps">
+            {scenario.steps.map((step, i) => (
+              <SequenceStep key={i} step={step} />
+            ))}
+          </ol>
         </div>
-        <ol className="seq-steps">
-          {scenario.steps.map((step, i) => (
-            <SequenceStep key={i} step={step} />
-          ))}
-        </ol>
-      </div>
+      ))}
     </div>
   );
 }
