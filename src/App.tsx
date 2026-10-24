@@ -28,6 +28,11 @@ export function App() {
   }, []);
 
   useEffect(() => {
+    document.body.classList.toggle('about-open', about);
+    return () => document.body.classList.remove('about-open');
+  }, [about]);
+
+  useEffect(() => {
     if (!intro) return;
     const timer = setTimeout(() => {
       setIntro(false);

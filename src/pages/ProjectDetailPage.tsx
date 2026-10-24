@@ -57,6 +57,7 @@ export function ProjectDetailPage({ project: p, go }: ProjectDetailPageProps) {
         <a className="github-link" href={p.repo} target="_blank" rel="noopener noreferrer">
           <Github size={15} />
           GitHub
+          <span className="repo-url">{p.repo.replace(/^https?:\/\//, '')}</span>
         </a>
       </section>
 

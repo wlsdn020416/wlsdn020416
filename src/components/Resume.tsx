@@ -2,6 +2,7 @@ import { Github } from 'lucide-react';
 import profilePhoto from '../assets/images/profile.jpg';
 import type { Period } from '../utils/period';
 import { PeriodLabel } from './PeriodLabel';
+import { StarIcon } from './StarIcon';
 
 const skills = [
   { category: 'Backend', items: 'Java · Spring Boot · Spring Data JPA' },
@@ -66,7 +67,7 @@ export function Resume() {
         <figure className="profile-photo">
           <img src={profilePhoto} alt="박진우 프로필 사진" width={600} height={777} />
           <span className="profile-sticker" aria-hidden="true">
-            ✳
+            <StarIcon />
           </span>
         </figure>
         <div className="resume-heading">
@@ -119,6 +120,7 @@ export function Resume() {
                 >
                   <Github size={13} />
                   GitHub
+                  <span className="repo-url">{exp.repo.replace(/^https?:\/\//, '')}</span>
                 </a>
               )}
             </p>

@@ -1,3 +1,5 @@
+import { StarIcon } from './StarIcon';
+
 export function Mascot() {
   return (
     <div className="mascot" aria-hidden="true">
@@ -13,7 +15,7 @@ export function Mascot() {
       </div>
       <div className="foot f1" />
       <div className="foot f2" />
-      <span className="spark s1">✳</span>
+      <StarIcon className="spark s1" />
       <span className="spark s2">✦</span>
     </div>
   );

@@ -1,4 +1,5 @@
 import { Plus } from 'lucide-react';
+import { StarIcon } from './StarIcon';
 
 type HeaderProps = {
   about: boolean;
@@ -17,7 +18,8 @@ export function Header({ about, onToggleAbout, go }: HeaderProps) {
           go('/');
         }}
       >
-        jinwoo<span className="brand-star">✳</span>
+        jinwoo
+        <StarIcon className="brand-star" />
       </a>
       <nav>
         <button onClick={onToggleAbout} aria-expanded={about}>

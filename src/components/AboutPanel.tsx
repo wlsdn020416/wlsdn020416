@@ -1,6 +1,73 @@
+import { Minus, Plus, Printer } from 'lucide-react';
+import { useEffect, useState, type CSSProperties } from 'react';
+
+const FONT_STEPS = [0.9, 1, 1.1, 1.2, 1.3];
+const FONT_KEY = 'jw-about-font';
+
+function readFontStep() {
+  try {
+    const raw = localStorage.getItem(FONT_KEY);
+    if (raw === null) return 1;
+    const saved = Number(raw);
+    return Number.isInteger(saved) && saved >= 0 && saved < FONT_STEPS.length ? saved : 1;
+  } catch {
+    return 1;
+  }
+}
+
 export function AboutPanel() {
+  const [step, setStep] = useState(readFontStep);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem(FONT_KEY, String(step));
+    } catch {
+      /* 저장이 막힌 브라우저에서는 현재 세션 동안만 적용한다. */
+    }
+  }, [step]);
+
   return (
-    <aside className="about-panel" aria-label="About me">
+    <aside
+      className="about-panel"
+      aria-label="About me"
+      style={{ '--about-scale': FONT_STEPS[step] } as CSSProperties}
+    >
+      <div className="about-tools">
+        <span className="about-tools-label">글자 크기</span>
+        <div className="font-stepper" role="group" aria-label="글자 크기 조절">
+          <button
+            type="button"
+            onClick={() => setStep((s) => Math.max(0, s - 1))}
+            disabled={step === 0}
+            aria-label="글자 작게"
+          >
+            <Minus size={14} />
+          </button>
+          <span aria-live="polite">{Math.round(FONT_STEPS[step] * 100)}%</span>
+          <button
+            type="button"
+            onClick={() => setStep((s) => Math.min(FONT_STEPS.length - 1, s + 1))}
+            disabled={step === FONT_STEPS.length - 1}
+            aria-label="글자 크게"
+          >
+            <Plus size={14} />
+          </button>
+        </div>
+        <button type="button" className="about-print" onClick={() => window.print()}>
+          <Printer size={14} />
+          PDF 저장
+        </button>
+      </div>
+
+      <div className="about-print-head">
+        <h1>
+          박진우 <span>Backend Developer</span>
+        </h1>
+        <p>
+          <a href="https://github.com/wlsdn020416">github.com/wlsdn020416</a>
+        </p>
+      </div>
+
       <section>
         <h2>문제를 이해하고, 해결책을 만들어가는 개발자입니다.</h2>
         <p>
