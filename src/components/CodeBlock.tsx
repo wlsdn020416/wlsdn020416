@@ -83,6 +83,8 @@ function highlight(line: string): ReactNode[] {
   return out;
 }
 
+const LONG_CODE_LINES = 30;
+
 type CodeBlockProps = {
   file: string;
   code: string;
@@ -101,8 +103,10 @@ export function CodeBlock({
   lang = 'java',
 }: CodeBlockProps) {
   const lines = code.replace(/^\n+|\n+$/g, '').split('\n');
+  // 인쇄할 때 짧은 코드는 한 페이지에 통째로 두고, 긴 코드만 줄 단위로 페이지를 넘긴다.
+  const long = lines.length > LONG_CODE_LINES;
   return (
-    <figure className={`code-block lang-${lang}`}>
+    <figure className={`code-block lang-${lang}${long ? ' is-long' : ''}`}>
       <figcaption className="code-file">{file}</figcaption>
       <pre>
         <code>

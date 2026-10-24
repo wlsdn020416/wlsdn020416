@@ -68,6 +68,15 @@ export function AboutPanel() {
         </p>
       </div>
 
+      <AboutSections />
+    </aside>
+  );
+}
+
+/** 자기소개 본문. 패널과 전체 PDF 문서가 함께 사용한다. */
+export function AboutSections() {
+  return (
+    <>
       <section>
         <h2>문제를 이해하고, 해결책을 만들어가는 개발자입니다.</h2>
         <p>
@@ -162,6 +171,6 @@ export function AboutPanel() {
         </p>
         <p>이것이 제가 추구하는 개발 방식이며, 앞으로도 지켜갈 기준입니다.</p>
       </section>
-    </aside>
+    </>
   );
 }

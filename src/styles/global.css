@@ -1260,9 +1260,166 @@ footer > span:nth-child(2) {
 }
 
 /* ── 인쇄 / PDF ───────────────────────────────────────────── */
+.print-link,
+.print-doc {
+  display: none;
+}
 @media print {
+  /* 온라인 포트폴리오 주소와 QR은 인쇄물에만 나온다. */
+  .print-link {
+    display: flex !important;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    margin: 0 0 28px;
+    padding: 14px 18px;
+    border: 1px solid #dcded4;
+    border-radius: 12px;
+    break-inside: avoid;
+  }
+  .print-link > div {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .print-link-label {
+    font:
+      600 9px 'Space Grotesk',
+      sans-serif;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: #889c4c;
+  }
+  .print-link > div > a {
+    font:
+      600 16px 'Space Grotesk',
+      sans-serif;
+    color: #1f201d;
+  }
+  .print-link p {
+    margin: 0;
+    font-size: 10.5px;
+    color: #6f7567;
+  }
+  .print-link-qr svg {
+    display: block;
+    width: 23mm;
+    height: 23mm;
+  }
+
+  /* 전체 PDF: 지금 보고 있는 화면 대신 전체 문서만 출력한다. */
+  body.print-all #root > :not(.print-doc) {
+    display: none !important;
+  }
+  .print-doc {
+    display: block !important;
+  }
+  /* 페이지를 강제로 나누지 않고 이어서 흘린다. 구획은 구분선과 프로젝트 배너로 나눈다. */
+  .print-doc-about {
+    margin-top: 22px;
+    padding-top: 16px !important;
+    border-top: 2px solid #292a28 !important;
+  }
+  .print-doc > .detail {
+    margin-top: 30px;
+  }
+  .print-doc .resume-intro {
+    gap: 22px;
+  }
+  .print-doc .profile-photo {
+    width: 96px;
+  }
+  .print-doc .resume-section {
+    padding-top: 16px;
+    margin-top: 16px;
+  }
+  .print-doc .resume-skills > div {
+    grid-template-columns: 110px 1fr;
+    gap: 12px;
+    margin: 4px 0;
+  }
+  .print-doc .resume-skills dt,
+  .print-doc .resume-skills dd {
+    font-size: 11.5px;
+    line-height: 1.6;
+  }
+  .print-doc .about-panel section {
+    padding-top: 12px;
+    margin-bottom: 4px;
+  }
+  .print-doc .about-panel h2 {
+    font-size: 15px;
+    margin-bottom: 6px;
+  }
+  .print-doc .about-panel p {
+    font-size: 11.5px;
+    line-height: 1.75;
+    margin-bottom: 5px;
+  }
+  .resume-section h2,
+  .experience-head {
+    break-after: avoid;
+  }
+  .resume-experience {
+    padding-bottom: 16px;
+    margin-bottom: 16px;
+  }
+  .resume-experience ul {
+    font-size: 11.5px;
+    line-height: 1.65;
+  }
+  .resume-experience li {
+    margin-bottom: 3px;
+  }
+
+  /* 프로젝트 배너는 로고 옆에 정보를 두는 가로형으로 줄인다. */
+  .detail-hero {
+    display: grid;
+    grid-template-columns: 150px minmax(0, 1fr);
+    column-gap: 26px;
+    align-items: center;
+    padding: 16px 22px;
+    border-radius: 14px;
+  }
+  .detail-logo {
+    grid-row: 1 / span 3;
+    width: 140px;
+  }
+  .detail-summary {
+    font-size: 13.5px;
+    font-weight: 600;
+    margin: 0 0 8px;
+  }
+  .detail-facts {
+    gap: 6px 22px;
+    margin: 0 0 8px;
+  }
+  .detail-facts dt {
+    font-size: 9.5px;
+    margin-bottom: 2px;
+  }
+  .detail-facts dd {
+    font-size: 11px;
+  }
+  .detail-content {
+    padding: 0;
+  }
+  .print-doc > .detail {
+    max-width: none;
+    padding: 0;
+  }
+  .print-doc-eyebrow {
+    font:
+      600 10px 'Space Grotesk',
+      sans-serif !important;
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+    color: #889c4c !important;
+    margin: 0 0 4px !important;
+  }
+
   @page {
-    margin: 16mm 15mm;
+    margin: 12mm 13mm;
   }
   :root,
   body {
@@ -1289,7 +1446,7 @@ footer > span:nth-child(2) {
   body.about-open .not-found {
     display: none !important;
   }
-  body.about-open .about-panel {
+  .about-panel {
     position: static;
     width: auto;
     max-height: none;
@@ -1361,11 +1518,11 @@ footer > span:nth-child(2) {
     color: #5f6559;
   }
   .card-repo {
-    margin: -6px 0 4px 6px;
+    margin: 6px 0 0 4px;
     font-family: 'Space Grotesk', sans-serif;
-    font-size: 11px;
+    font-size: 10px;
     color: #4f5a2b;
-    word-break: break-all;
+    white-space: nowrap;
   }
   .detail-hero .github-link,
   .experience-repo {
@@ -1405,13 +1562,37 @@ footer > span:nth-child(2) {
     display: block;
     padding: 0;
   }
+  /* 프로젝트 카드는 한 줄에 세 개씩, 카드 아래에 GitHub 주소를 둔다. */
   .project-shelf {
     position: static;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-rows: auto auto;
+    grid-auto-flow: column;
+    column-gap: 12px;
+    row-gap: 0;
     max-height: none;
     overflow: visible;
-    margin: 28px 0 0;
+    margin: 12px 0 0;
     padding: 0;
-    gap: 12px;
+    break-inside: avoid;
+  }
+  .project-card {
+    padding: 14px 16px 12px;
+    border-radius: 14px;
+  }
+  .project-card .card-logo {
+    max-width: 104px;
+    height: auto;
+  }
+  .project-card .card-summary {
+    font-size: 11.5px;
+    word-break: keep-all;
+  }
+  .project-card .card-meta {
+    flex-wrap: wrap;
+    font-size: 10px;
+    gap: 2px 8px;
   }
   .profile-photo::before {
     display: none;

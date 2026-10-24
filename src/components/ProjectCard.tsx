@@ -37,7 +37,7 @@ export function ProjectCard({ project: p, go }: ProjectCardProps) {
       </a>
       {/* 카드 전체가 상세 페이지 링크라 그 안에 넣으면 PDF에서 GitHub로 이동하지 않는다. 인쇄할 때만 보인다. */}
       <a className="card-repo" href={p.repo} target="_blank" rel="noopener noreferrer">
-        GitHub · {p.repo.replace(/^https?:\/\//, '')}
+        {p.repo.replace(/^https?:\/\//, '')}
       </a>
     </>
   );
