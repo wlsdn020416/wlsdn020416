@@ -60,9 +60,12 @@ export function AboutPanel() {
       </div>
 
       <div className="about-print-head">
-        <h1>
-          박진우 <span>Backend Developer</span>
-        </h1>
+        <h1>박진우</h1>
+        <p>
+          <a className="email-link" href="mailto:wlsdn020416@gmail.com">
+            wlsdn020416@gmail.com
+          </a>
+        </p>
         <p>
           <a href="https://github.com/wlsdn020416">github.com/wlsdn020416</a>
         </p>

@@ -72,7 +72,12 @@ export function Resume() {
         </figure>
         <div className="resume-heading">
           <h1>
-            박진우<span>Backend Developer</span>
+            박진우
+            <span>
+              <a className="email-link" href="mailto:wlsdn020416@gmail.com">
+                wlsdn020416@gmail.com
+              </a>
+            </span>
           </h1>
           <p className="resume-birth">
             <time dateTime="2002-04-16">2002. 04. 16.</time>

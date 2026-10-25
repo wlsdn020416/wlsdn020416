@@ -975,6 +975,13 @@ footer > span:nth-child(2) {
   font-size: 13px;
   color: #72796a;
 }
+.email-link {
+  overflow-wrap: anywhere;
+}
+.email-link:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
 .github-link {
   display: inline-flex;
   align-items: center;
