@@ -24,7 +24,7 @@ export function Header({ about, onToggleAbout, printing, onPrint, go }: HeaderPr
         <StarIcon className="brand-star" />
       </a>
       <nav>
-        <button onClick={onPrint} disabled={printing} aria-label="포트폴리오 전체 PDF 저장">
+        <button onClick={onPrint} disabled={printing} aria-label="현재 화면 PDF 저장" title="현재 화면 PDF 저장">
           PDF <FileDown size={14} />
         </button>
         <button onClick={onToggleAbout} aria-expanded={about}>

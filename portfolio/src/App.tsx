@@ -4,7 +4,6 @@ import { GrabPerformancePage } from './case-studies/grab/GrabPerformancePage';
 import { AboutPanel } from './components/AboutPanel';
 import { Header } from './components/Header';
 import { Intro } from './components/Intro';
-import { PrintDocument } from './components/PrintDocument';
 import { PrintLink } from './components/PrintLink';
 import { projects } from './data/projects';
 import { HomePage } from './pages/HomePage';
@@ -37,15 +36,14 @@ export function App() {
     return () => document.body.classList.remove('about-open');
   }, [about]);
 
-  // 전체 PDF: 문서를 그린 뒤 이미지가 모두 준비되면 인쇄 창을 띄우고, 창이 닫히면 문서를 치운다.
+  // 현재 화면의 이미지와 글꼴이 준비되면 인쇄 창을 띄운다.
   useEffect(() => {
     if (!printing) return;
-    document.body.classList.add('print-all');
     const done = () => setPrinting(false);
     window.addEventListener('afterprint', done);
 
     let cancelled = false;
-    const images = Array.from(document.querySelectorAll<HTMLImageElement>('.print-doc img'));
+    const images = Array.from(document.querySelectorAll<HTMLImageElement>('#root img'));
     const ready = images.map((img) => {
       img.loading = 'eager';
       if (img.complete) return Promise.resolve();
@@ -61,7 +59,6 @@ export function App() {
     return () => {
       cancelled = true;
       window.removeEventListener('afterprint', done);
-      document.body.classList.remove('print-all');
     };
   }, [printing]);
 
@@ -106,7 +103,6 @@ export function App() {
         onToggleAbout={() => setAbout(!about)}
         printing={printing}
         onPrint={() => {
-          setAbout(false);
           setPrinting(true);
         }}
         go={go}
@@ -124,7 +120,6 @@ export function App() {
       ) : (
         <NotFoundPage go={go} />
       )}
-      {printing && <PrintDocument />}
     </>
   );
 }
