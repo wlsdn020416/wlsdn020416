@@ -1,0 +1,651 @@
+.grab-eyebrow {
+  font:
+    600 11px 'Space Grotesk',
+    sans-serif;
+  letter-spacing: 1.8px;
+  color: #576337;
+  margin: 0 0 16px;
+}
+.grab-responsibilities {
+  margin: 30px 0 0;
+}
+.grab-responsibilities > div {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 20px;
+  border-top: 1px solid var(--line);
+  padding: 18px 0;
+  font-size: 14px;
+  line-height: 1.8;
+}
+.grab-responsibilities dt {
+  font-weight: 600;
+}
+.grab-responsibilities dd {
+  margin: 0;
+  color: var(--muted);
+}
+.grab-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin: 32px 0 16px;
+  border-block: 1px solid var(--line);
+  padding: 26px 0;
+}
+.grab-metrics > div {
+  padding: 0 24px;
+  border-left: 1px solid var(--line);
+}
+.grab-metrics > div:first-child {
+  padding-left: 0;
+  border-left: 0;
+}
+.grab-metrics strong {
+  font:
+    500 clamp(30px, 4vw, 48px) 'Space Grotesk',
+    sans-serif;
+  letter-spacing: -2px;
+}
+.grab-metrics strong span {
+  font:
+    500 14px 'Inter',
+    sans-serif;
+  margin-left: 7px;
+  letter-spacing: 0;
+}
+.grab-metrics p {
+  margin: 9px 0 0;
+  font-size: 13px;
+  color: var(--muted);
+}
+.grab-note {
+  font-size: 12px !important;
+  line-height: 1.8 !important;
+  color: var(--muted);
+  word-break: keep-all;
+}
+.grab-story-link {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  margin-top: 30px;
+  padding: 28px 30px;
+  background: #eef3df;
+  border: 1px solid #bfcd9b;
+  border-radius: 12px;
+  transition: background 0.15s;
+}
+.grab-story-link:hover {
+  background: #e5edcf;
+}
+.grab-story-link > span {
+  display: grid;
+  gap: 9px;
+}
+.grab-story-link small {
+  font-size: 10px;
+  letter-spacing: 1.6px;
+  color: #576337;
+}
+.grab-story-link strong {
+  font-size: 20px;
+  line-height: 1.5;
+  letter-spacing: -0.5px;
+}
+.grab-story-link span span {
+  font-size: 12px;
+  line-height: 1.7;
+  color: var(--muted);
+}
+.grab-story-link svg {
+  flex-shrink: 0;
+}
+.grab-principles {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  margin-top: 26px;
+}
+.grab-principles h3 {
+  font-size: 16px;
+  margin: 0 0 12px;
+}
+.grab-principles p {
+  font-size: 14px;
+  line-height: 1.9;
+  color: var(--muted);
+  word-break: keep-all;
+  margin: 0;
+}
+.performance-page {
+  max-width: 1220px;
+  margin: auto;
+  padding: 28px 5% 80px;
+}
+.grab-article-hero {
+  padding: 45px 0 48px;
+  border-bottom: 1px solid var(--line);
+}
+.grab-article-hero h1 {
+  font-size: clamp(34px, 4.6vw, 60px);
+  line-height: 1.25;
+  letter-spacing: -2.4px;
+  font-weight: 700;
+  margin: 22px 0 24px;
+  word-break: keep-all;
+}
+.grab-article-deck {
+  color: var(--muted);
+  font-size: 17px;
+  line-height: 1.9;
+  word-break: keep-all;
+}
+.grab-article-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  margin-top: 32px;
+  font-size: 11px;
+  color: var(--muted);
+}
+.grab-article-layout {
+  display: grid;
+  grid-template-columns: 180px minmax(0, 1fr);
+  gap: 60px;
+  padding-top: 48px;
+}
+.grab-toc {
+  position: sticky;
+  top: 32px;
+  align-self: start;
+}
+.grab-toc > p {
+  font:
+    600 10px 'Space Grotesk',
+    sans-serif;
+  letter-spacing: 1.6px;
+  color: var(--muted);
+  margin: 0 0 20px;
+}
+.grab-toc ol {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.grab-toc li {
+  margin-bottom: 15px;
+}
+.grab-toc a {
+  display: flex;
+  gap: 12px;
+  font-size: 12px;
+  line-height: 1.6;
+}
+.grab-toc a:hover {
+  color: #506900;
+}
+.grab-toc span {
+  font:
+    11px 'Space Grotesk',
+    sans-serif;
+  color: var(--muted);
+  padding-top: 2px;
+}
+.grab-article-body {
+  min-width: 0;
+  max-width: 760px;
+}
+.grab-article-body p,
+.grab-article-body li {
+  font-size: 15px;
+  line-height: 1.95;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+.grab-article-body p {
+  margin: 18px 0;
+}
+.grab-article-body .grab-opening {
+  font-size: 18px;
+  margin: 0 0 36px;
+  line-height: 1.95;
+}
+.grab-article-body section {
+  margin-top: 62px;
+  padding-top: 30px;
+  border-top: 1px solid var(--line);
+  scroll-margin-top: 32px;
+}
+.grab-article-body section > .grab-eyebrow {
+  font-size: 10px;
+  line-height: 1.5;
+  margin: 0 0 12px;
+}
+.grab-article-body h2 {
+  font-size: 27px;
+  line-height: 1.5;
+  letter-spacing: -0.9px;
+  margin: 0 0 22px;
+  word-break: keep-all;
+}
+.grab-article-body h3 {
+  font-size: 18px;
+  line-height: 1.6;
+  margin: 30px 0 12px;
+  word-break: keep-all;
+}
+.grab-article-body blockquote {
+  margin: 30px 0;
+  padding: 8px 0 8px 24px;
+  border-left: 3px solid #78914b;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.9;
+  letter-spacing: -0.4px;
+  word-break: keep-all;
+}
+.grab-flow {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  list-style: none;
+  padding: 0;
+  margin: 28px 0;
+  border-block: 1px solid var(--line);
+}
+.grab-flow li {
+  position: relative;
+  display: grid;
+  padding: 22px 12px;
+  text-align: center;
+}
+.grab-flow li + li::before {
+  content: '→';
+  position: absolute;
+  top: 30px;
+  left: -7px;
+  color: var(--muted);
+}
+.grab-flow b {
+  font-size: 14px;
+}
+.grab-flow span {
+  font-size: 11px;
+  color: var(--muted);
+}
+.grab-callout {
+  background: #eef3df;
+  padding: 20px 24px;
+  margin: 28px 0;
+  border-radius: 4px;
+}
+.grab-callout > strong {
+  font-size: 13px;
+}
+.grab-callout p {
+  margin: 8px 0 0;
+  font-size: 14px;
+}
+.grab-table-scroll {
+  overflow-x: auto;
+  margin: 26px 0;
+}
+.grab-article-body table {
+  width: 100%;
+  min-width: 420px;
+  border-collapse: collapse;
+  font-size: 13px;
+  line-height: 1.8;
+}
+.grab-article-body caption {
+  text-align: left;
+  color: var(--muted);
+  font-size: 11px;
+  padding-bottom: 12px;
+}
+.grab-article-body th,
+.grab-article-body td {
+  text-align: left;
+  padding: 14px 12px;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+  word-break: keep-all;
+}
+.grab-article-body thead th {
+  background: #f0f0e9;
+  font-size: 11px;
+  color: #606656;
+}
+.grab-article-body tbody th {
+  font-weight: 500;
+  width: 35%;
+}
+.grab-article-body td {
+  color: #505649;
+}
+.grab-cache-flow {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  align-items: center;
+  padding: 24px 14px;
+  background: #f0f0e9;
+  font-size: 13px;
+}
+.grab-timing-figure {
+  border-block: 1px solid var(--line);
+  padding: 8px 0 18px;
+  margin: 26px 0;
+}
+.grab-timing-figure > div {
+  display: grid;
+  grid-template-columns: 70px 1fr;
+  align-items: baseline;
+  gap: 12px;
+}
+.grab-timing-figure b {
+  font-size: 12px;
+  color: #506633;
+}
+.grab-timing-figure p {
+  font-size: 13px;
+  margin: 14px 0;
+}
+.grab-timing-figure small {
+  display: block;
+  color: var(--muted);
+  font-size: 11px;
+  margin-top: 8px;
+}
+.grab-limitations {
+  border: 1px solid var(--line);
+  padding: 18px 22px;
+  margin: 26px 0;
+}
+.grab-article-body summary {
+  font-size: 13px;
+  cursor: pointer;
+  line-height: 1.8;
+}
+.grab-limitations ul {
+  padding-left: 18px;
+}
+.grab-limitations li {
+  font-size: 13px;
+  margin: 10px 0;
+  color: var(--muted);
+}
+.grab-article-sources {
+  margin-top: 56px;
+  border-top: 1px solid var(--line);
+  padding-top: 30px;
+}
+.grab-article-sources h2 {
+  font-size: 20px;
+}
+.grab-article-sources > a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: fit-content;
+  margin: 16px 0;
+  font-size: 13px;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.grab-article-sources > .grab-return {
+  margin-top: 36px;
+  text-decoration: none;
+  padding: 14px 0;
+}
+.grab-comparison-pending {
+  padding: 24px;
+  border: 1px dashed #bcc5ad;
+  background: #f3f4ec;
+}
+.grab-comparison-pending h3 {
+  margin: 12px 0 8px;
+  font-size: 16px;
+}
+.grab-comparison-pending p {
+  margin: 0;
+  font-size: 13px;
+  color: var(--muted);
+}
+.grab-chart {
+  margin: 36px 0;
+  padding: 24px 20px;
+  border: 1px solid var(--line);
+  background: #fcfcf9;
+  border-radius: 8px;
+}
+.grab-chart figcaption h3 {
+  margin: 0;
+}
+.grab-chart figcaption p {
+  font-size: 12px;
+  color: var(--muted);
+}
+.grab-chart-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 20px 0;
+}
+.grab-chart-controls button {
+  padding: 8px 12px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  font-size: 12px;
+}
+.grab-chart-controls button[aria-pressed='true'] {
+  background: #e5edcf;
+  border-color: #78914b;
+}
+.grab-chart svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 18px 0;
+}
+.grab-chart svg text {
+  font:
+    11px 'Inter',
+    sans-serif;
+  fill: #606656;
+}
+.grab-chart-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  font-size: 11px;
+  color: #8872a4;
+}
+.grab-chart-legend span + span {
+  color: #4b6900;
+}
+@media (max-width: 900px) {
+  .grab-article-layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 32px;
+  }
+  .grab-toc {
+    position: static;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--line);
+  }
+  .grab-toc ol {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+  .grab-toc li {
+    margin: 0;
+  }
+  .grab-article-body {
+    max-width: none;
+  }
+}
+@media (max-width: 600px) {
+  .grab-responsibilities > div {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+  .grab-principles {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .grab-metrics > div {
+    padding: 0 10px;
+  }
+  .grab-metrics strong {
+    font-size: 29px;
+    letter-spacing: -1px;
+  }
+  .grab-metrics strong span {
+    display: block;
+    font-size: 12px;
+    margin: 6px 0;
+  }
+  .grab-metrics p {
+    font-size: 11px;
+    line-height: 1.7;
+  }
+  .grab-story-link {
+    padding: 22px;
+    gap: 12px;
+  }
+  .grab-story-link strong {
+    font-size: 17px;
+  }
+  .grab-article-hero {
+    padding-top: 26px;
+  }
+  .grab-article-hero h1 {
+    letter-spacing: -1.5px;
+  }
+  .grab-article-deck {
+    font-size: 15px;
+  }
+  .grab-wide-break {
+    display: none;
+  }
+  .grab-article-body .grab-opening {
+    font-size: 17px;
+  }
+  .grab-article-body h2 {
+    font-size: 24px;
+  }
+  .grab-flow li {
+    padding: 16px 6px;
+  }
+  .grab-flow span {
+    font-size: 10px;
+  }
+  .grab-flow li + li::before {
+    top: 24px;
+  }
+  .grab-chart {
+    padding: 20px 10px;
+  }
+}
+@media print {
+  .grab-story-link,
+  .grab-metrics,
+  .grab-principles {
+    break-inside: avoid;
+  }
+  .grab-metrics {
+    padding: 12px 0;
+    margin: 18px 0 10px;
+  }
+  .grab-metrics strong {
+    font-size: 26px;
+  }
+  .grab-principles {
+    gap: 18px;
+  }
+  .grab-principles p,
+  .grab-responsibilities > div {
+    font-size: 11px;
+  }
+  .grab-story-link {
+    padding: 16px;
+  }
+  .grab-story-link strong {
+    font-size: 14px;
+  }
+  .performance-page {
+    max-width: none;
+    padding: 0;
+  }
+  .performance-page > .back,
+  .grab-toc,
+  .grab-chart-controls,
+  .grab-return {
+    display: none;
+  }
+  .grab-article-layout {
+    display: block;
+    padding-top: 22px;
+  }
+  .grab-article-body {
+    max-width: none;
+  }
+  .grab-article-hero h1 {
+    font-size: 32px;
+  }
+  .grab-article-body p,
+  .grab-article-body li {
+    font-size: 11px;
+  }
+  .grab-article-body section {
+    margin-top: 25px;
+    padding-top: 20px;
+  }
+  .grab-article-body h2 {
+    font-size: 20px;
+    break-after: avoid;
+  }
+  .grab-table-scroll {
+    overflow: visible;
+  }
+}
+
+/* 기술 문서의 제목과 본문 위계 */
+.grab-article-hero {
+  padding: 24px 0 32px;
+}
+.grab-article-hero h1 {
+  font-size: clamp(28px, 3.5vw, 42px);
+  letter-spacing: -1px;
+  margin: 0 0 18px;
+  line-height: 1.4;
+}
+.grab-article-deck {
+  font-size: 16px;
+}
+.grab-article-body .grab-opening {
+  font-size: 15px;
+}
+.grab-toc > p {
+  font-family: inherit;
+  font-size: 13px;
+  letter-spacing: 0;
+}
+.grab-story-link {
+  background: transparent;
+  border: 0;
+  border-block: 1px solid var(--line);
+  border-radius: 0;
+  padding: 22px 0;
+}
+.grab-story-link:hover {
+  background: transparent;
+  color: #506900;
+}
+.grab-story-link strong {
+  font-size: 16px;
+  letter-spacing: 0;
+}

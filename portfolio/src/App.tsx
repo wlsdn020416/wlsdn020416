@@ -1,4 +1,6 @@
+import { TechnicalArticlePage, technicalArticles } from './pages/TechnicalArticlePage';
 import { useEffect, useState } from 'react';
+import { GrabPerformancePage } from './case-studies/grab/GrabPerformancePage';
 import { AboutPanel } from './components/AboutPanel';
 import { Header } from './components/Header';
 import { Intro } from './components/Intro';
@@ -81,10 +83,20 @@ export function App() {
 
   const project = projects.find((p) => path === `/projects/${p.id}`);
   const home = path === '/';
+  const technicalArticle = technicalArticles.find(
+    (article) => path.replace(/\/$/, '') === article.path,
+  );
+  const performance = path.replace(/\/$/, '') === '/projects/grab/performance';
 
   useEffect(() => {
-    document.title = project ? `${project.name} — ${DEFAULT_TITLE}` : DEFAULT_TITLE;
-  }, [project]);
+    document.title = performance
+      ? `GRAB 조회 성능 개선 — ${DEFAULT_TITLE}`
+      : technicalArticle
+        ? `${technicalArticle.title} — ${DEFAULT_TITLE}`
+        : project
+          ? `${project.name} — ${DEFAULT_TITLE}`
+          : DEFAULT_TITLE;
+  }, [project, performance, technicalArticle]);
 
   return (
     <>
@@ -103,6 +115,10 @@ export function App() {
       {about && <AboutPanel />}
       {home ? (
         <HomePage go={go} />
+      ) : performance ? (
+        <GrabPerformancePage />
+      ) : technicalArticle ? (
+        <TechnicalArticlePage article={technicalArticle} />
       ) : project ? (
         <ProjectDetailPage key={project.id} project={project} go={go} />
       ) : (

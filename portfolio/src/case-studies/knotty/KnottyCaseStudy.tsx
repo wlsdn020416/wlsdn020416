@@ -1,3 +1,4 @@
+import { StudyOverview } from '../shared/StudyOverview';
 import '../../styles/case-study.css';
 import aiMatchingShot from '../../assets/images/knotty/ai-matching.jpg';
 import { CodeBlock } from '../../components/CodeBlock';
@@ -15,7 +16,7 @@ import {
 
 function MatchingSection() {
   return (
-    <section className="cs-part">
+    <section className="cs-part" id="matching">
       <h2>AI 매칭</h2>
       <p className="cs-lead">
         자연어 검색어로 조건에 맞는 재능글·요청글을 찾는 기능입니다. LLM은 검색 조건 추출과 추천
@@ -71,7 +72,7 @@ function MatchingSection() {
 
 function TradeLockSection() {
   return (
-    <section className="cs-part">
+    <section className="cs-part" id="concurrency">
       <h2>거래 동시성 제어</h2>
       <p className="cs-lead">
         팀원이 구현한 결제 흐름에 비관적 락(<code>PESSIMISTIC_WRITE</code>)을 추가해 같은 거래 ·
@@ -99,12 +100,12 @@ function TradeLockSection() {
 
 function AuthSection() {
   return (
-    <section className="cs-part">
+    <section className="cs-part" id="authentication">
       <h2>인증</h2>
       <p className="cs-lead">
-        XSS로 토큰이 유출되지 않도록 JWT를 HttpOnly 쿠키로만 주고받게 구현했습니다. Refresh Token은
-        Redis에 저장해 서버에서 폐기할 수 있게 했고, 쿠키 사용에 따른 CSRF는 double-submit 토큰으로
-        막았습니다.
+        JavaScript에서 토큰을 직접 읽을 수 없도록 JWT를 HttpOnly 쿠키로 전달했습니다. Refresh
+        Token은 Redis에 저장해 서버에서 폐기할 수 있게 했고, 쿠키 사용에 따른 CSRF는 double-submit
+        토큰으로 검증하도록 구현했습니다.
       </p>
 
       <div className="cs-block">
@@ -123,7 +124,7 @@ function AuthSection() {
   );
 }
 
-export function KnottyCaseStudy() {
+export function KnottyArticleContent() {
   return (
     <div className="case-study">
       <MatchingSection />
@@ -131,4 +132,8 @@ export function KnottyCaseStudy() {
       <AuthSection />
     </div>
   );
+}
+
+export function KnottyCaseStudy() {
+  return <StudyOverview project="knotty" />;
 }

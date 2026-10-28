@@ -1,3 +1,4 @@
+import { StudyOverview } from '../shared/StudyOverview';
 import '../../styles/case-study.css';
 import dayRouteShot from '../../assets/images/packing/day-route.jpg';
 import recommendationShot from '../../assets/images/packing/recommendation.jpg';
@@ -49,7 +50,7 @@ const collectionSteps: Step[] = [
 
 function CollectionSection() {
   return (
-    <section className="cs-part">
+    <section className="cs-part" id="collection">
       <h2>데이터 수집</h2>
       <p className="cs-lead">
         한국관광공사 TourAPI에서 전국 관광지 데이터를 수집하는 스크립트를 구현했습니다. 지역과
@@ -83,8 +84,8 @@ function CollectionSection() {
 
 function ScoringSection() {
   return (
-    <section className="cs-part">
-      <h2>MBTI 점수 가공과 랭킹</h2>
+    <section className="cs-part" id="scoring">
+      <h2>규칙 기반 점수 계산과 추천 정렬</h2>
       <p className="cs-lead">
         수집한 관광지마다 16개 여행 MBTI 유형별 적합도(0~100점)를 계산해 저장합니다. 콘텐츠 유형과
         설명 텍스트에 맞는 규칙의 가중치를 8개 축에 더하고, 유형의 네 글자에 해당하는 축 점수를
@@ -129,12 +130,12 @@ function ScoringSection() {
 
 function ItinerarySection() {
   return (
-    <section className="cs-part">
+    <section className="cs-part" id="itinerary">
       <h2>LLM 일정 추천과 fallback</h2>
       <p className="cs-lead">
         지역 · 기간 · 키워드를 입력하면 Gemini로 여행 일정을 생성합니다. 후보 선정과 하루 동선은
-        규칙 기반으로 먼저 정하고 LLM에 넘기며, LLM 호출이 실패해도 같은 동선으로 일정을 만들어
-        사용자가 오류 화면을 보지 않게 했습니다.
+        규칙 기반으로 먼저 정하고 LLM에 넘기며, LLM 호출이 실패해도 같은 동선으로 일정을 만들어 기본
+        일정 응답을 반환하도록 했습니다.
       </p>
 
       <div className="cs-block">
@@ -172,7 +173,7 @@ function ItinerarySection() {
   );
 }
 
-export function PackingCaseStudy() {
+export function PackingArticleContent() {
   return (
     <div className="case-study">
       <CollectionSection />
@@ -180,4 +181,8 @@ export function PackingCaseStudy() {
       <ItinerarySection />
     </div>
   );
+}
+
+export function PackingCaseStudy() {
+  return <StudyOverview project="packing" />;
 }

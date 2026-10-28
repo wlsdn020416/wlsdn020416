@@ -1,0 +1,191 @@
+.study-roles {
+  margin: 28px 0 0;
+}
+.study-roles > div {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 24px;
+  padding: 18px 0;
+  border-top: 1px solid var(--line);
+  font-size: 14px;
+  line-height: 1.8;
+}
+.study-roles dt {
+  font-weight: 600;
+}
+.study-roles dd {
+  margin: 0;
+  color: var(--muted);
+}
+.study-decisions {
+  display: grid;
+  gap: 24px;
+}
+.study-decisions h3 {
+  font-size: 17px;
+  margin: 0 0 8px;
+}
+.study-decisions p,
+.study-scope {
+  font-size: 14px;
+  line-height: 1.9;
+  color: var(--muted);
+  word-break: keep-all;
+  margin: 0;
+}
+.study-scope {
+  margin-top: 28px;
+}
+.study-document-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 22px 0;
+  margin-top: 24px;
+  border-block: 1px solid var(--line);
+  font-size: 16px;
+  font-weight: 600;
+}
+.study-document-link:hover {
+  color: var(--point);
+}
+.study-document-link svg {
+  flex-shrink: 0;
+}
+.technical-page {
+  max-width: 1220px;
+  margin: auto;
+  padding: 28px 5% 80px;
+}
+.technical-heading {
+  padding: 24px 0 32px;
+  border-bottom: 1px solid var(--line);
+}
+.technical-heading h1 {
+  margin: 0 0 18px;
+  font-size: clamp(28px, 3.5vw, 42px);
+  line-height: 1.4;
+  letter-spacing: -1px;
+  word-break: keep-all;
+}
+.technical-heading p {
+  max-width: 760px;
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.9;
+  color: var(--muted);
+  word-break: keep-all;
+}
+.technical-layout {
+  display: grid;
+  grid-template-columns: 170px minmax(0, 1fr);
+  gap: 48px;
+  padding-top: 38px;
+}
+.technical-toc {
+  position: sticky;
+  top: 32px;
+  align-self: start;
+  font-size: 13px;
+}
+.technical-toc p {
+  font-weight: 600;
+  margin: 0 0 18px;
+}
+.technical-toc ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.technical-toc li {
+  margin-bottom: 16px;
+  line-height: 1.6;
+}
+.technical-toc a:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.technical-body {
+  min-width: 0;
+}
+.technical-body .cs-part {
+  scroll-margin-top: 28px;
+}
+.technical-body .cs-part:first-child {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+.technical-body .cs-part > h2 {
+  font-size: 26px;
+}
+.technical-footer {
+  margin-top: 46px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20px;
+}
+.technical-footer a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+}
+@media (max-width: 900px) {
+  .technical-layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 30px;
+  }
+  .technical-toc {
+    position: static;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--line);
+  }
+  .technical-toc ol {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 22px;
+  }
+}
+@media (max-width: 600px) {
+  .study-roles > div {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+  .technical-body .cs-part > h2 {
+    font-size: 23px;
+  }
+}
+@media print {
+  .technical-page {
+    max-width: none;
+    padding: 0;
+  }
+  .technical-layout {
+    display: block;
+  }
+  .technical-toc,
+  .technical-page > .back {
+    display: none;
+  }
+  .technical-heading h1 {
+    font-size: 26px;
+  }
+  .study-decisions > div,
+  .study-roles > div {
+    break-inside: avoid;
+  }
+  .study-roles > div,
+  .study-decisions p,
+  .study-scope {
+    font-size: 11px;
+  }
+  .study-document-link {
+    font-size: 12px;
+    padding: 12px 0;
+  }
+}
