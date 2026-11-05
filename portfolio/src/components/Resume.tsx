@@ -1,4 +1,5 @@
-import { Github } from 'lucide-react';
+import { ArrowUpRight, Github } from 'lucide-react';
+import '../styles/resume.css';
 import profilePhoto from '../assets/images/profile.jpg';
 import type { Period } from '../utils/period';
 import { PeriodLabel } from './PeriodLabel';
@@ -15,6 +16,12 @@ const skills = [
 type Experience = {
   name: string;
   summary: string;
+  id: string;
+  team: string;
+  description: string;
+  role: string;
+  results: { label: string; text: string }[];
+  measurement?: string;
   points: string[];
   period?: Period;
   repo?: string;
@@ -22,7 +29,20 @@ type Experience = {
 
 const experiences: Experience[] = [
   {
+    id: 'grab',
     name: 'GRAB',
+    team: '4인 프로젝트',
+    description:
+      '한정 수량 상품의 공개·판매 상태를 관리하고, 관심 상품 등록과 실시간 재고 확인을 지원하는 커머스 서비스입니다.',
+    role: 'DROP · WISH · SSE · 조회 성능 개선',
+    results: [
+      {
+        label: '문제',
+        text: '실시간 재고 알림 후 재조회가 집중되어 상세 재조회 p95 176~253ms 발생',
+      },
+      { label: '해결', text: '재조회 시점을 0~1초 분산해 상세 재조회 p95 19~20ms로 개선' },
+    ],
+    measurement: '측정 기준: 400연결·DB CPU 1개 제한 로컬 환경, 동일 요청량으로 분산 전·후 비교',
     summary: '한정수량 판매 서비스',
     period: { start: '2026-09-22', end: '2026-11-04' },
     repo: 'https://github.com/wlsdn020416/Grab',
@@ -35,7 +55,18 @@ const experiences: Experience[] = [
     ],
   },
   {
+    id: 'knotty',
     name: 'Knotty',
+    team: '3인 프로젝트',
+    description:
+      '사용자와 재능 정보를 바탕으로 AI가 재능을 매칭하고, 요청·거래·결제로 연결하는 플랫폼입니다.',
+    role: 'AI 매칭 · 거래 동시성 제어 · 인증',
+    results: [
+      {
+        label: '성과',
+        text: '의미 기반 검색과 원본 데이터 검증을 결합하며, AI 기능을 서비스에 통합하는 설계 역량 강화',
+      },
+    ],
     summary: 'AI 기반 재능 거래 및 매칭 플랫폼',
     period: { start: '2026-08-21', end: '2026-09-03' },
     repo: 'https://github.com/wlsdn020416/Knotty',
@@ -48,7 +79,18 @@ const experiences: Experience[] = [
     ],
   },
   {
+    id: 'packing',
     name: 'Packing',
+    team: '4인 프로젝트',
+    description:
+      '사용자 성향과 지역 조건에 맞는 국내 관광지를 추천하고, LLM으로 맞춤형 여행 전략을 제공하는 서비스입니다.',
+    role: '데이터 수집 · 가공 · LLM 추천',
+    results: [
+      {
+        label: '성과',
+        text: '관계형 DB의 데이터 구조와 웹의 요청·응답 흐름을 이해하고, API·DB 연동에 적용',
+      },
+    ],
     summary: '데이터 기반 개인화 여행 추천 서비스',
     period: { start: '2026-06-08', end: '2026-06-12' },
     repo: 'https://github.com/wlsdn020416/Packing',
@@ -82,6 +124,9 @@ export function Resume() {
           <p className="resume-birth">
             <time dateTime="2002-04-16">2002. 04. 16.</time>
           </p>
+          <p className="resume-contact">
+            <a href="tel:01068302219">010-6830-2219</a>
+          </p>
           <a
             className="github-link"
             href="https://github.com/wlsdn020416"
@@ -89,10 +134,42 @@ export function Resume() {
             rel="noopener noreferrer"
           >
             <Github size={15} />
-            github.com/wlsdn020416
+            <span>github.com/wlsdn020416</span>
           </a>
         </div>
       </div>
+
+      <p className="resume-address">
+        <span>주소</span> 경기도 고양시 일산서구 대화로27번길 36-1 (법곳동)
+      </p>
+
+      <section className="resume-section resume-profile" aria-labelledby="resume-profile-title">
+        <h2 id="resume-profile-title">
+          문제의 본질을 파악하고,
+          <br />더 나은 답을 설계하는 개발자 박진우입니다.
+        </h2>
+        <p>기술의 원리를 이해하고 문제를 구조적으로 분석하는 것을 중요하게 생각합니다.</p>
+        <p>
+          복잡한 정보 속에서 핵심을 빠르게 찾아내고, 명확하고 간결한 소통을 통해 실행 가능한
+          해결책으로 연결합니다.
+        </p>
+        <dl className="resume-highlights">
+          <div>
+            <dt>Knotty</dt>
+            <dd>
+              AI 매칭의 핵심을 검색·원본 검증·순위 산정으로 나누고, 구현·테스트 후 LLM 연동으로
+              확장했습니다.
+            </dd>
+          </div>
+          <div>
+            <dt>GRAB</dt>
+            <dd>
+              재고 갱신 지연의 원인을 재조회 집중으로 파악하고, 요청 시점을 분산해 응답 지연을
+              줄였습니다.
+            </dd>
+          </div>
+        </dl>
+      </section>
 
       <section className="resume-section">
         <h2>기술</h2>
@@ -106,7 +183,7 @@ export function Resume() {
         </dl>
       </section>
 
-      <section className="resume-section resume-last">
+      <section className="resume-section">
         <h2>프로젝트 경험</h2>
         {experiences.map((exp) => (
           <article className="resume-experience" key={exp.name}>
@@ -116,6 +193,28 @@ export function Resume() {
             </div>
             <p className="experience-summary">
               {exp.summary}
+              <span className="experience-team">{exp.team}</span>
+            </p>
+            <p className="experience-description">{exp.description}</p>
+            <p className="experience-role">{exp.role}</p>
+            <ul>
+              {exp.points.map((point) => (
+                <li key={point}>{point}</li>
+              ))}
+            </ul>
+            <dl className="experience-results">
+              {exp.results.map((result) => (
+                <div key={result.label}>
+                  <dt>{result.label}</dt>
+                  <dd>{result.text}</dd>
+                </div>
+              ))}
+            </dl>
+            {exp.measurement && <p className="experience-measurement">{exp.measurement}</p>}
+            <div className="experience-links">
+              <a className="experience-detail" href={`/projects/${exp.id}`}>
+                프로젝트 상세 <ArrowUpRight size={14} aria-hidden="true" />
+              </a>
               {exp.repo && (
                 <a
                   className="experience-repo"
@@ -123,19 +222,36 @@ export function Resume() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <Github size={13} />
+                  <Github size={13} aria-hidden="true" />
                   GitHub
                   <span className="repo-url">{exp.repo.replace(/^https?:\/\//, '')}</span>
                 </a>
               )}
-            </p>
-            <ul>
-              {exp.points.map((point) => (
-                <li key={point}>{point}</li>
-              ))}
-            </ul>
+            </div>
           </article>
         ))}
+      </section>
+
+      <section className="resume-section resume-last">
+        <h2>교육 이력</h2>
+        <article className="resume-education">
+          <h3>프로그래머스 데브코스: 생성형 AI 활용 백엔드 개발</h3>
+          <div className="experience-head">
+            <p>(주)그렙</p>
+            <PeriodLabel
+              className="experience-period"
+              period={{ start: '2026-05-13', end: '2026-11-09' }}
+            />
+          </div>
+          <ul>
+            <li>
+              Java·Spring Boot·JPA 기반 API 설계와 DB·트랜잭션 처리를 학습하고 팀 프로젝트에 적용
+            </li>
+            <li>
+              생성형 AI·LLM 기능 구현부터 GitHub 협업, 테스트 자동화·CI/CD·클라우드 배포까지 경험
+            </li>
+          </ul>
+        </article>
       </section>
     </section>
   );

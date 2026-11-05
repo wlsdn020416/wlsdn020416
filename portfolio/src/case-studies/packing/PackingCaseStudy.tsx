@@ -1,19 +1,8 @@
 import { StudyOverview } from '../shared/StudyOverview';
 import '../../styles/case-study.css';
-import dayRouteShot from '../../assets/images/packing/day-route.jpg';
-import recommendationShot from '../../assets/images/packing/recommendation.jpg';
-import { CodeBlock } from '../../components/CodeBlock';
 import { StepList, type Step } from '../shared/StepList';
 import { ItineraryFlow } from './ItineraryFlow';
 import { MbtiScoreExample } from './MbtiScoreExample';
-import {
-  fallbackSnippet,
-  normalizeSnippet,
-  pagesSnippet,
-  rankingSnippet,
-  scoringSnippet,
-  targetsSnippet,
-} from './snippets';
 
 const collectionSteps: Step[] = [
   {
@@ -61,23 +50,6 @@ function CollectionSection() {
       <div className="cs-block">
         <StepList steps={collectionSteps} />
       </div>
-
-      <div className="cs-block cs-codes">
-        <CodeBlock
-          file="importTourData.js"
-          lang="js"
-          code={targetsSnippet}
-          highlightLines={[2, 3, 4, 5, 12, 13, 14, 15]}
-          caption="유형별 목표 수와, 지도 · 카드 화면에 필요한 주소 · 이미지 · 좌표 필수 조건입니다."
-        />
-        <CodeBlock
-          file="importTourData.js"
-          lang="js"
-          code={pagesSnippet}
-          highlightLines={[15, 16, 17]}
-          caption="첫 페이지와 마지막 페이지 사이를 같은 간격으로 나눠 조회할 페이지를 고릅니다."
-        />
-      </div>
     </section>
   );
 }
@@ -96,34 +68,6 @@ function ScoringSection() {
         <h3>점수 계산</h3>
         <MbtiScoreExample />
       </div>
-
-      <figure className="cs-shot">
-        <img
-          src={recommendationShot}
-          alt="Packing 맞춤 여행지 TOP 10 화면. 추천 1위 가거도, 적합도 56.8점."
-          width={1024}
-          height={599}
-          loading="lazy"
-        />
-        <figcaption>맞춤 여행지 TOP 10 화면</figcaption>
-      </figure>
-
-      <div className="cs-block cs-codes">
-        <CodeBlock
-          file="mbtiScorer.js"
-          lang="js"
-          code={scoringSnippet}
-          highlightLines={[4, 5, 12, 13, 14]}
-          caption="한 축에 가중치를 더하면 반대 축에서 같은 만큼 빼서, 두 축의 합이 항상 100이 되게 했습니다."
-        />
-        <CodeBlock
-          file="destinationRecommendation.js"
-          lang="js"
-          code={rankingSnippet}
-          highlightLines={[1, 2, 5]}
-          caption="점수 내림차순, 동점이면 ID 순으로 정렬하고 이미지 · 지역 · 키워드 필터를 DB 조회 단계에서 적용합니다."
-        />
-      </div>
     </section>
   );
 }
@@ -140,34 +84,6 @@ function ItinerarySection() {
 
       <div className="cs-block">
         <ItineraryFlow />
-      </div>
-
-      <figure className="cs-shot">
-        <img
-          src={dayRouteShot}
-          alt="Packing 일정 상세 화면. DAY 3에 수동계곡과 가산낚시터 두 곳이 지도에 표시된다."
-          width={1200}
-          height={798}
-          loading="lazy"
-        />
-        <figcaption>일정 상세 화면 — 하루 2곳을 가까운 거리로 묶은 결과</figcaption>
-      </figure>
-
-      <div className="cs-block cs-codes">
-        <CodeBlock
-          file="travel.js"
-          lang="js"
-          code={fallbackSnippet}
-          highlightLines={[11, 12, 13, 14]}
-          caption="Gemini 호출에서 어떤 예외가 나도 미리 만들어 둔 fallback 일정을 반환합니다."
-        />
-        <CodeBlock
-          file="travel.js"
-          lang="js"
-          code={normalizeSnippet}
-          highlightLines={[13, 14, 15, 16]}
-          caption="LLM 응답이 있어도 날짜별 장소는 근거리 묶음 결과로 채워, 후보 밖 장소가 일정에 들어가지 않게 했습니다."
-        />
       </div>
     </section>
   );

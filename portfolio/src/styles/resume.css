@@ -1,0 +1,153 @@
+.resume-contact {
+  margin: 10px 0 0;
+  font-size: 13px;
+  color: #72796a;
+}
+.resume-contact a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.resume-address {
+  margin: -18px 0 0;
+  font-size: 12px;
+  line-height: 1.8;
+  color: #72796a;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+.resume-address > span {
+  margin-right: 8px;
+  font-weight: 600;
+  color: #464f3c;
+}
+.resume-profile h2 {
+  font-size: clamp(20px, 1.6vw, 25px);
+  line-height: 1.6;
+  word-break: keep-all;
+}
+.resume-profile > p,
+.experience-description {
+  font-size: 13px;
+  line-height: 1.9;
+  color: #707769;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+.resume-profile > p {
+  margin: 8px 0;
+}
+.resume-highlights,
+.experience-results {
+  margin: 20px 0 0;
+  font-size: 13px;
+  line-height: 1.9;
+}
+.resume-highlights > div,
+.experience-results > div {
+  display: grid;
+  grid-template-columns: 50px minmax(0, 1fr);
+  gap: 12px;
+  margin-top: 10px;
+}
+.resume-highlights dt,
+.experience-results dt {
+  font-weight: 600;
+  color: #596642;
+}
+.resume-highlights dd,
+.experience-results dd {
+  margin: 0;
+  color: #707769;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+.experience-team {
+  color: #596642;
+  font-size: 11px;
+  white-space: nowrap;
+}
+.experience-description {
+  margin: 0 0 12px;
+}
+.experience-role {
+  margin: 0 0 16px;
+  font-size: 12px;
+  line-height: 1.8;
+  font-weight: 600;
+  color: #596642;
+}
+.experience-results {
+  padding: 14px 16px;
+  border-radius: 12px;
+  background: #edf0e4;
+}
+.experience-results > div:first-child {
+  margin-top: 0;
+}
+.experience-results > div {
+  grid-template-columns: 28px minmax(0, 1fr);
+}
+.experience-measurement {
+  margin: 10px 0 0;
+  font-size: 11px;
+  line-height: 1.8;
+  color: #72796a;
+}
+.experience-links {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 18px;
+}
+.experience-detail {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 5px 12px;
+  border-radius: 20px;
+  background: #e6edbb;
+  color: #4f5a2b;
+  font-size: 12px;
+  font-weight: 500;
+}
+.experience-detail:hover {
+  background: #dbe5a3;
+}
+.resume-education h3 {
+  font-size: 16px;
+  line-height: 1.7;
+  margin: 0 0 12px;
+  word-break: keep-all;
+}
+.resume-education .experience-head > p {
+  margin: 0;
+  font-size: 13px;
+  color: #596642;
+}
+.resume-education ul {
+  padding-left: 17px;
+  margin: 18px 0 0;
+  font-size: 13px;
+  line-height: 1.9;
+  color: #707769;
+}
+.resume-education li {
+  padding-left: 3px;
+  margin-bottom: 10px;
+  word-break: keep-all;
+}
+.resume-education li::marker {
+  color: #a5b18d;
+}
+
+.resume-heading .github-link {
+  max-width: 100%;
+}
+.resume-heading .github-link span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.resume-heading .github-link svg {
+  flex-shrink: 0;
+}

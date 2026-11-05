@@ -1,18 +1,8 @@
 import { StudyOverview } from '../shared/StudyOverview';
 import '../../styles/case-study.css';
-import aiMatchingShot from '../../assets/images/knotty/ai-matching.jpg';
-import { CodeBlock } from '../../components/CodeBlock';
 import { AuthSequence } from './AuthSequence';
 import { LockTimeline } from './LockTimeline';
 import { MatchingPipeline } from './MatchingPipeline';
-import {
-  analyzeSnippet,
-  paySnippet,
-  rankingSnippet,
-  reasonPromptSnippet,
-  refreshSnippet,
-  vectorSearchSnippet,
-} from './snippets';
 
 function MatchingSection() {
   return (
@@ -26,45 +16,6 @@ function MatchingSection() {
       <div className="cs-block">
         <h3>처리 단계</h3>
         <MatchingPipeline />
-      </div>
-
-      <figure className="cs-shot">
-        <img
-          src={aiMatchingShot}
-          alt="Knotty AI 매칭 결과 화면. 적합도 63%와 추천 이유가 표시된다."
-          width={1200}
-          height={797}
-          loading="lazy"
-        />
-        <figcaption>AI 매칭 결과 화면</figcaption>
-      </figure>
-
-      <div className="cs-block cs-codes">
-        <CodeBlock
-          file="AiMatchQueryAnalysisService.java"
-          code={analyzeSnippet}
-          highlightLines={[8, 9, 10]}
-          caption="LLM 호출이 실패하면 정규식과 키워드 규칙으로 조건을 추출합니다."
-        />
-        <CodeBlock
-          file="VectorSearchService.java"
-          code={vectorSearchSnippet}
-          highlightLines={[9, 11]}
-          caption="대상 타입만 필터링해 후보 30개를 가져오고, 세부 조건은 이후 SQL 단계에서 확인합니다."
-        />
-        <CodeBlock
-          file="MatchRankingService.java"
-          code={rankingSnippet}
-          highlightLines={[1, 2, 18, 19]}
-          caption="금액 조건이 있으면 의미 유사도 90%, 금액 적합도 10%로 점수를 계산합니다."
-        />
-        <CodeBlock
-          file="RecommendationReasonService.java (프롬프트)"
-          code={reasonPromptSnippet}
-          lang="text"
-          highlightLines={[2, 3]}
-          caption="LLM이 후보 순서나 점수를 바꾸지 않도록 하고, 게시글 본문의 지시문은 따르지 않도록 했습니다."
-        />
       </div>
     </section>
   );
@@ -85,15 +36,6 @@ function TradeLockSection() {
       <div className="cs-block">
         <LockTimeline />
       </div>
-
-      <div className="cs-block cs-codes">
-        <CodeBlock
-          file="TradeService.java"
-          code={paySnippet}
-          highlightLines={[3, 7, 8]}
-          caption="거래 행을 먼저 잠근 뒤 상태를 확인합니다. 뒤따르는 요청은 잠금이 풀린 후 PAID 상태를 보고 거절됩니다."
-        />
-      </div>
     </section>
   );
 }
@@ -110,15 +52,6 @@ function AuthSection() {
 
       <div className="cs-block">
         <AuthSequence />
-      </div>
-
-      <div className="cs-block cs-codes">
-        <CodeBlock
-          file="AuthService.java"
-          code={refreshSnippet}
-          highlightLines={[15, 17, 18]}
-          caption="서명 검증 후 Redis에 저장된 값과 비교합니다. 로그아웃하면 Redis 키가 삭제되어 재발급되지 않습니다."
-        />
       </div>
     </section>
   );

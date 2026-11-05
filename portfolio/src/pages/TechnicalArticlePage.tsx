@@ -10,7 +10,7 @@ export const technicalArticles = [
     path: '/projects/knotty/engineering',
     title: 'Knotty 백엔드 구현',
     description:
-      '자연어 검색 기반 매칭, 거래 동시성 제어, 쿠키 기반 인증의 처리 구조와 구현 코드입니다.',
+      '자연어 검색 기반 매칭, 거래 동시성 제어, 쿠키 기반 인증의 처리 구조와 설계 내용입니다.',
     sections: [
       ['matching', 'AI 매칭'],
       ['concurrency', '거래 동시성 제어'],
