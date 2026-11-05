@@ -7,7 +7,7 @@ import '../../styles/grab-story.css';
 const sourceRoot = 'https://github.com/prgrms-aibe-devcourse/AIBE7_FinalProject_Team3';
 const sections = [
   ['problem', '목표와 운영 제약'],
-  ['baseline', '첫 측정과 목표의 거리'],
+  ['baseline', '전달 지연에서 재조회 집중으로'],
   ['cost', '쿼리와 캐시 개선'],
   ['burst', '요청 집중 분석'],
   ['jitter', '재조회 시점 분산'],
@@ -26,8 +26,8 @@ export function GrabPerformancePage() {
           <h1>GRAB 조회 성능 개선</h1>
           <p className="grab-article-deck">
             1,000명이 지켜보는 한정판매에서 조회 p95 200ms 이하를 목표로 삼았습니다. 단일 인스턴스와
-            외부 DB 제약 안에서 측정하고, 쿼리를 줄인 뒤 드러난 재조회 순간 집중까지 해결한
-            과정입니다.
+            외부 DB 제약 안에서 SSE 알림 전달 지연을 줄이고, 빨라진 전송이 만든 재조회 순간 집중까지
+            해결한 과정입니다.
           </p>
         </div>
 
@@ -47,10 +47,10 @@ export function GrabPerformancePage() {
           </aside>
           <div className="grab-article-body">
             <p className="grab-opening">
-              실시간 재고 갱신 과정에서 상세·목록 조회와 주문 요청이 DB 자원을 공유합니다. 쿼리
-              비용과 DB 왕복을 줄인 뒤에도 지연이 발생해, 요청 도착 시점과 커넥션 대기를 추가로
-              분석했습니다. 최종적으로 자동 재조회 시점을 분산하고 로컬 1,000연결 조건에서 응답시간
-              기준 충족을 확인했습니다.
+              바닐라 코드의 1,000연결 측정에서는 조회 API가 p95 200ms 기준을 충족했지만, SSE 알림
+              전달은 4.27초로 3초 기준을 넘었습니다. 연결마다 수행하던 DB 재확인을 제거하자 알림은
+              빨라졌고, 후속 재조회가 동시에 몰리는 문제가 드러났습니다. 쿼리·캐시 개선에 재조회
+              시점 분산을 더해, 최종적으로 전달 지연과 조회 응답시간 기준을 함께 충족했습니다.
             </p>
 
             <section id="problem">
@@ -155,7 +155,61 @@ export function GrabPerformancePage() {
             </section>
 
             <section id="baseline">
-              <h2>02. 첫 통합 측정: 연결은 유지됐지만 조회 목표는 크게 초과했습니다</h2>
+              <h2>02. 출발점은 느린 알림이었습니다. 전송을 개선하자 조회가 몰렸습니다</h2>
+              <h3>바닐라: HTTP는 빨랐지만 변경 신호가 늦게 도착했습니다</h3>
+              <p>
+                성능 작업 전 바닐라 코드(1c5bd76)는 SSE를 전송할 때 연결마다 상품의 공개 여부를
+                DB에서 다시 확인했습니다. 구독자가 늘수록 이 반복 조회가 전달을 늦췄습니다. 같은
+                운영 모사 조건에서 확인한 1,000연결 비교값은 다음과 같습니다.
+              </p>
+              <div className="grab-table-scroll">
+                <table>
+                  <caption>바닐라 1,000연결 · 주문 50건/초 · 처리 한계 비교 회차</caption>
+                  <thead>
+                    <tr>
+                      <th scope="col">지표</th>
+                      <th scope="col">p95</th>
+                      <th scope="col">기준과 판정</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">상세 / 재고 / 목록 HTTP</th>
+                      <td>115 / 100 / 97ms</td>
+                      <td>각 200ms 이하 · 충족</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">주문 HTTP</th>
+                      <td>233ms</td>
+                      <td>500ms 이하 · 충족</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">SSE 알림 전달</th>
+                      <td>4.27초</td>
+                      <td>3초 이하 · 미달</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">주문 응답 수신 → 재조회 완료</th>
+                      <td>4.46초</td>
+                      <td>8초 이하 · 충족</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p>
+                HTTP 응답시간만 보면 통과처럼 보이지만, 사용자는 변경 신호를 늦게 받고 있었습니다.
+                느린 전송 때문에 재조회가 자연스럽게 흩어졌고, 1,000연결에서도 실제 재조회량은 약
+                441건/초에 머물렀습니다. 이 수치는 후속 바닐라 대조 실험에서 확인한 값이며, 최초
+                측정 시점에 얻은 값으로 서술하지 않습니다.
+              </p>
+              <h3>전송 최적화: 연결별 공개 여부 재확인을 제거했습니다</h3>
+              <p>
+                공개 상품이 DRAFT로 돌아가는 전이와 물리 삭제 경로가 없어 구독 시점의 검증으로
+                충분했습니다. GR-163에서 전송마다 반복하던 DB 조회를 제거했습니다. 이 변경으로 알림
+                전송은 빨라졌지만, 여러 화면이 같은 순간에 알림을 받고 HTTP 재조회를 시작하게
+                됐습니다. 이후 실험에서 이 도착 시점의 집중을 원인으로 확인했습니다.
+              </p>
+              <h3>전송 최적화 후 통합 측정: 새로 드러난 HTTP 대기</h3>
               <p>
                 SSE 연결만 유지하는 시험에서 나아가, 알림을 받은 화면이 실제로 API를 다시 부르게
                 했습니다. 전송 최적화가 반영된 코드에서 캐시를 끈 1,000연결 회차는 상세 p95 2,496ms,
@@ -207,7 +261,7 @@ export function GrabPerformancePage() {
             </section>
 
             <section id="cost">
-              <h2>03. 요청 하나가 쓰는 DB 비용부터 줄였습니다</h2>
+              <h2>03. 후속 조회가 쓰는 DB 비용을 줄였습니다</h2>
               <p>
                 쿼리 실행 계획과 DB 호출 횟수를 확인했습니다. 인기순 목록은 주문 이력을 반복
                 집계했고, 상세 화면은 SQL 자체가 빨라도 여러 번 DB를 왕복하고 있었습니다. 계산량과
