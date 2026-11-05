@@ -104,7 +104,16 @@ export function GrabPerformancePage() {
               </p>
               <div className="grab-table-scroll">
                 <table>
-                  <caption>운영 모사 조건 — GR-186·GR-180</caption>
+                  <caption>
+                    운영 모사 조건 —{' '}
+                    <a href={`${sourceRoot}/pull/213`} target="_blank" rel="noopener noreferrer">
+                      GR-186
+                    </a>
+                    ·
+                    <a href={`${sourceRoot}/pull/214`} target="_blank" rel="noopener noreferrer">
+                      GR-180
+                    </a>
+                  </caption>
                   <thead>
                     <tr>
                       <th>대상</th>
@@ -205,9 +214,13 @@ export function GrabPerformancePage() {
               <h3>전송 최적화: 연결별 공개 여부 재확인을 제거했습니다</h3>
               <p>
                 공개 상품이 DRAFT로 돌아가는 전이와 물리 삭제 경로가 없어 구독 시점의 검증으로
-                충분했습니다. GR-163에서 전송마다 반복하던 DB 조회를 제거했습니다. 이 변경으로 알림
-                전송은 빨라졌지만, 여러 화면이 같은 순간에 알림을 받고 HTTP 재조회를 시작하게
-                됐습니다. 이후 실험에서 이 도착 시점의 집중을 원인으로 확인했습니다.
+                충분했습니다.{' '}
+                <a href={`${sourceRoot}/pull/199`} target="_blank" rel="noopener noreferrer">
+                  GR-163
+                </a>
+                에서 전송마다 반복하던 DB 조회를 제거했습니다. 이 변경으로 알림 전송은 빨라졌지만,
+                여러 화면이 같은 순간에 알림을 받고 HTTP 재조회를 시작하게 됐습니다. 이후 실험에서
+                이 도착 시점의 집중을 원인으로 확인했습니다.
               </p>
               <h3>전송 최적화 후 통합 측정: 새로 드러난 HTTP 대기</h3>
               <p>
@@ -217,7 +230,12 @@ export function GrabPerformancePage() {
               </p>
               <div className="grab-table-scroll">
                 <table>
-                  <caption>GR-180 통합 측정 · 전송 최적화 후 · 캐시 없음</caption>
+                  <caption>
+                    <a href={`${sourceRoot}/pull/214`} target="_blank" rel="noopener noreferrer">
+                      GR-180
+                    </a>{' '}
+                    통합 측정 · 전송 최적화 후 · 캐시 없음
+                  </caption>
                   <thead>
                     <tr>
                       <th>연결</th>
@@ -328,7 +346,12 @@ export function GrabPerformancePage() {
               </p>
               <div className="grab-table-scroll">
                 <table>
-                  <caption>GR-183 저장소 선택 근거 · 서로 다른 측정 지표의 비교</caption>
+                  <caption>
+                    <a href={`${sourceRoot}/pull/206`} target="_blank" rel="noopener noreferrer">
+                      GR-183
+                    </a>{' '}
+                    저장소 선택 근거 · 서로 다른 측정 지표의 비교
+                  </caption>
                   <thead>
                     <tr>
                       <th scope="col">대상</th>
@@ -362,9 +385,13 @@ export function GrabPerformancePage() {
                 배치와 통신 지연을 반영한 선택입니다.
               </p>
               <p className="grab-note">
-                105ms는 Redis 왕복 측정값이며 Redis 캐시 적용 API의 p95가 아닙니다. GR-183에서는 이
-                근거로 Redis 저장소의 부하 비교를 진행하지 않았습니다. 캐시 개선 수치는 앱 메모리
-                저장소의 결과이며, 이후 Caffeine 교체 자체의 성능 효과를 측정한 값도 아닙니다.
+                105ms는 Redis 왕복 측정값이며 Redis 캐시 적용 API의 p95가 아닙니다.{' '}
+                <a href={`${sourceRoot}/pull/206`} target="_blank" rel="noopener noreferrer">
+                  GR-183
+                </a>
+                에서는 이 근거로 Redis 저장소의 부하 비교를 진행하지 않았습니다. 캐시 개선 수치는 앱
+                메모리 저장소의 결과이며, 이후 Caffeine 교체 자체의 성능 효과를 측정한 값도
+                아닙니다.
               </p>
               <p>
                 단일 인스턴스 전제에는 한계도 있습니다. 다른 인스턴스의 변경은 로컬 무효화에
@@ -378,7 +405,7 @@ export function GrabPerformancePage() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  상세·재고 캐시 측정 기록 · GR-183 저장소 선택 근거
+                  상세·재고 캐시 측정 기록 · 저장소 선택 근거
                 </a>
               </p>
               <h3>캐시 무효화와 진행 중 조회의 경합 처리</h3>
@@ -778,25 +805,25 @@ export function GrabPerformancePage() {
                 통합 재조회 실험 기록 <ArrowUpRight size={15} />
               </a>
               <a href={`${sourceRoot}/pull/215`} target="_blank" rel="noopener noreferrer">
-                목록 count 통합 PR #215 <ArrowUpRight size={15} />
+                GR-198 · 목록 count 통합 PR #215 <ArrowUpRight size={15} />
               </a>
               <a href={`${sourceRoot}/pull/220`} target="_blank" rel="noopener noreferrer">
-                프론트 재조회 분산 PR #220 <ArrowUpRight size={15} />
+                GR-209 · 프론트 재조회 분산 PR #220 <ArrowUpRight size={15} />
               </a>
               <a href={`${sourceRoot}/pull/213`} target="_blank" rel="noopener noreferrer">
-                운영 모사 환경 PR #213 · 82399011
+                GR-186 · 운영 모사 환경 PR #213 · 82399011
               </a>
               <a href={`${sourceRoot}/pull/199`} target="_blank" rel="noopener noreferrer">
-                SSE 반복 조회 제거 PR #199 · e6d7e6db
+                GR-163 · SSE 반복 조회 제거 PR #199 · e6d7e6db
               </a>
               <a href={`${sourceRoot}/pull/206`} target="_blank" rel="noopener noreferrer">
-                상세·재고 캐시 PR #206 · b2960f41
+                GR-183 · 상세·재고 캐시 PR #206 · b2960f41
               </a>
               <a href={`${sourceRoot}/pull/214`} target="_blank" rel="noopener noreferrer">
-                통합 부하 측정 PR #214 · 5e77bcca
+                GR-180 · 통합 부하 측정 PR #214 · 5e77bcca
               </a>
               <a href={`${sourceRoot}/pull/216`} target="_blank" rel="noopener noreferrer">
-                순간 집중 원인 분석 PR #216 · f0829bde
+                GR-200 · 순간 집중 원인 분석 PR #216 · f0829bde
               </a>
               <a className="grab-return" href="/projects/grab">
                 <ArrowLeft size={16} /> GRAB 프로젝트로 돌아가기
