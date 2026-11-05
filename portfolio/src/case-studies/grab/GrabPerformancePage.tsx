@@ -320,6 +320,67 @@ export function GrabPerformancePage() {
               <p className="grab-note">
                 각 행의 부하·측정 조건은 다릅니다. 수치를 합쳐 전체 개선율로 해석하지 않습니다.
               </p>
+              <h3>Redis 대신 앱 메모리 캐시를 선택한 이유</h3>
+              <p>
+                단일 인스턴스 운영에서는 여러 서버가 같은 캐시를 공유할 필요가 없었습니다. 이
+                조건에서 캐시 저장소를 고르는 기준은 네트워크 왕복까지 포함해 실제 조회 비용을
+                줄이는지였습니다.
+              </p>
+              <div className="grab-table-scroll">
+                <table>
+                  <caption>GR-183 저장소 선택 근거 · 서로 다른 측정 지표의 비교</caption>
+                  <thead>
+                    <tr>
+                      <th scope="col">대상</th>
+                      <th scope="col">기록된 시간</th>
+                      <th scope="col">판단</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">운영 EC2 ↔ 외부 Redis(Aiven Valkey)</th>
+                      <td>왕복 105ms</td>
+                      <td>캐시 적중에도 네트워크 비용 발생</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">DB 직접 상세 조회</th>
+                      <td>약 28ms</td>
+                      <td>Redis 왕복보다 짧은 상세 조회 시간</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">앱 메모리 캐시</th>
+                      <td>외부 네트워크 왕복 없음</td>
+                      <td>단일 인스턴스의 동일 응답 재사용에 적합</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p>
+                운영에서 사용하는 외부 Redis의 왕복만 105ms로 측정됐습니다. 캐시에 적중해도 DB 직접
+                상세 조회 약 28ms보다 큰 통신 비용을 지불하는 조건이어서, 공개 상세·재고 응답은 앱
+                메모리에 저장했습니다. Redis 자체의 처리 성능이 낮다는 뜻이 아니라 당시 외부 서비스
+                배치와 통신 지연을 반영한 선택입니다.
+              </p>
+              <p className="grab-note">
+                105ms는 Redis 왕복 측정값이며 Redis 캐시 적용 API의 p95가 아닙니다. GR-183에서는 이
+                근거로 Redis 저장소의 부하 비교를 진행하지 않았습니다. 캐시 개선 수치는 앱 메모리
+                저장소의 결과이며, 이후 Caffeine 교체 자체의 성능 효과를 측정한 값도 아닙니다.
+              </p>
+              <p>
+                단일 인스턴스 전제에는 한계도 있습니다. 다른 인스턴스의 변경은 로컬 무효화에
+                전달되지 않으므로 blue/green 전환 중에는 TTL만큼 이전 응답이 보일 수 있습니다. 다중
+                인스턴스로 확장할 때는 공유 캐시나 무효화 전달 방식과 실제 왕복 지연을 다시 검토해야
+                합니다.
+              </p>
+              <p>
+                <a
+                  href={`${sourceRoot}/blob/main/Backend/k6/scenarios/drop-detail-scale/result.md`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  상세·재고 캐시 측정 기록 · GR-183 저장소 선택 근거
+                </a>
+              </p>
               <h3>캐시 무효화와 진행 중 조회의 경합 처리</h3>
               <p>
                 조회가 진행되는 동안 주문이 확정될 수 있습니다. 이때 캐시를 지우기만 하면, 먼저
